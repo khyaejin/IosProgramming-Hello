@@ -4,7 +4,6 @@
 //
 //  Created by 김혜진 on 6/14/25.
 //
-// 모델 구조체 + 딕셔너리 변환
 
 import Foundation
 
