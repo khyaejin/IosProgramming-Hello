@@ -4,10 +4,9 @@
 //
 //  Created by 김혜진 on 6/13/25.
 //
-
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     @IBOutlet weak var characterImageView: UIImageView! // 캐릭터 이미지
@@ -16,7 +15,10 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var situationTitleLabel: UILabel! // 상황 제목 라벨
     
-    @IBOutlet weak var situationListTableView: UITableView!
+    @IBOutlet weak var situationListTableView: UITableView! // 상황 리스트  테이블
+    
+    var guides: [Guide] = []
+    let guideService = GuideService()
     
     @IBAction func adviceButton(_ sender: Any) { // 조언 시작 버튼
     }
@@ -26,36 +28,49 @@ class HomeViewController: UIViewController {
     @IBAction func letterboxButton(_ sender: Any) { // 우편함 버튼
     }
     
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         // 테스트 코드 실행
-//        testCreateUserAndMemberAndSituation()
+//        let dataAddTest = DataAddTest()
+//        dataAddTest.testDatabase()
+        
+        // 상황 리스트 데이터 넣기
+        situationListTableView.delegate = self
+        situationListTableView.dataSource = self
+        
+        // 상황 ID에 따라 초기화
+        setupGuideList(for: "situation001")
+        
     }
-        
-    func testCreateUserAndMemberAndSituation() {
-        let userService = UserService()
-        let memberService = MemberService()
-        let situationService = SituationService()
-
-        let user = User(id: "user001", name: "김혜진", age: 24, gender: "female", mbti: "INTP", tendency1: "감성적", tendency2: "외향적", tendency3: "개방적", loveType: "직진형")
-
-        let member = Member(id: "member001", userId: "user001", name: "김회원", age: 27, gender: "male", mbti: "ISFJ", tendency1: "배려형", tendency2: "진중한", tendency3: "성실한", loveType: "소극적", prompt: "프롬프트", relationType: "연애")
-        
-        let situation = Situation(id: "situation001", description: "소개팅 첫만남")
-
-        userService.createUser(user: user) { error in
-            print(error == nil ? "유저 생성 성공!" : "유저 생성 실패..: \(error!.localizedDescription)")
-        }
-
-        memberService.createMember(member: member) { error in
-            print(error == nil ? "멤버 생성 성공!" : "멤버 생성 실패..: \(error!.localizedDescription)")
-        }
-        
-        situationService.createSituation(situation: situation){ error in
-            print(error == nil ? "상황 생성 성공!" : "상황 생성 실패..: \(error!.localizedDescription)")
-        }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return guides.count
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GuideCell", for: indexPath) as? GuideTableViewCell else {
+            return UITableViewCell()
+        }
+        let guide = guides[indexPath.row]
+        cell.guideLabel.text = guide.content
+        return cell
+    }
+    
+    // 넘어온 텍스트들을 situationListTableView에 보여줌
+    func setupGuideList(for situationId: String) {
+        fetchGuidesForSituation(situationId)
+    }
+    
+    // 상황에 맞는 가이드 불러오는 메서드
+    func fetchGuidesForSituation(_ situationId: String) {
+        guideService.fetchGuides(for: situationId) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.guides = result
+                self?.situationListTableView.reloadData()
+            }
+        }
+    }
 }
-

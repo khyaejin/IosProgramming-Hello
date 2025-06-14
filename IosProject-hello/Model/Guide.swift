@@ -9,7 +9,7 @@ import Foundation
 
 struct Guide {
     var id: String
-    var situationId: Int
+    var situationId: String
     var content: String
 
     static func toDict(_ guide: Guide) -> [String: Any] {
@@ -22,7 +22,7 @@ struct Guide {
 
     static func fromDict(_ dict: [String: Any]) -> Guide? {
         guard let id = dict["id"] as? String,
-              let situationId = dict["situationId"] as? Int,
+              let situationId = dict["situationId"] as? String,
               let content = dict["content"] as? String else {
             return nil
         }
