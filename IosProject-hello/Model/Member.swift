@@ -8,8 +8,8 @@
 import Foundation
 
 struct Member {
-    var id: Int
-    var userId: Int
+    var id: String
+    var userId: String // 이 멤버가 연결된 사용자
     var name: String
     var age: Int
     var gender: String
@@ -19,12 +19,12 @@ struct Member {
     var tendency3: String
     var loveType: String
     var prompt: String
-    var relationType: String
+    var relationType: String // 관계의 성격 (ex. 썸, 친구, 짝사랑)
 
     static func toDict(_ member: Member) -> [String: Any] {
         return [
             "id": member.id,
-            "user_id": member.userId,
+            "userId": member.userId,
             "name": member.name,
             "age": member.age,
             "gender": member.gender,
@@ -32,15 +32,15 @@ struct Member {
             "tendency1": member.tendency1,
             "tendency2": member.tendency2,
             "tendency3": member.tendency3,
-            "love_type": member.loveType,
+            "loveType": member.loveType,
             "prompt": member.prompt,
-            "relation_type": member.relationType
+            "relationType": member.relationType
         ]
     }
 
     static func fromDict(_ dict: [String: Any]) -> Member? {
-        guard let id = dict["id"] as? Int,
-              let userId = dict["user_id"] as? Int,
+        guard let id = dict["id"] as? String,
+              let userId = dict["userId"] as? String,
               let name = dict["name"] as? String,
               let age = dict["age"] as? Int,
               let gender = dict["gender"] as? String,
@@ -48,9 +48,9 @@ struct Member {
               let tendency1 = dict["tendency1"] as? String,
               let tendency2 = dict["tendency2"] as? String,
               let tendency3 = dict["tendency3"] as? String,
-              let loveType = dict["love_type"] as? String,
+              let loveType = dict["loveType"] as? String,
               let prompt = dict["prompt"] as? String,
-              let relationType = dict["relation_type"] as? String else {
+              let relationType = dict["relationType"] as? String else {
             return nil
         }
         return Member(id: id, userId: userId, name: name, age: age, gender: gender, mbti: mbti, tendency1: tendency1, tendency2: tendency2, tendency3: tendency3, loveType: loveType, prompt: prompt, relationType: relationType)

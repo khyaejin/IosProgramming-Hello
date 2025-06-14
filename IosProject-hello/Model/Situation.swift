@@ -8,21 +8,21 @@
 import Foundation
 
 struct Situation {
-    var id: Int
-    var situation: String
+    var id: String
+    var description: String
 
     static func toDict(_ situation: Situation) -> [String: Any] {
         return [
             "id": situation.id,
-            "situation": situation.situation
+            "description": situation.description
         ]
     }
 
     static func fromDict(_ dict: [String: Any]) -> Situation? {
-        guard let id = dict["id"] as? Int,
-              let situation = dict["situation"] as? String else {
+        guard let id = dict["id"] as? String,
+              let description = dict["description"] as? String else {
             return nil
         }
-        return Situation(id: id, situation: situation)
+        return Situation(id: id, description: description)
     }
 }
