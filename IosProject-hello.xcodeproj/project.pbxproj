@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		322184812DFC0A5E00271B33 /* Exceptions for "IosProject-hello" folder in "IosProject-hello" target */ = {
+		322184812DFC0A5E00271B33 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -30,14 +30,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		322184712DFC0A5C00271B33 /* IosProject-hello */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				322184812DFC0A5E00271B33 /* Exceptions for "IosProject-hello" folder in "IosProject-hello" target */,
-			);
-			path = "IosProject-hello";
-			sourceTree = "<group>";
-		};
+		322184712DFC0A5C00271B33 /* IosProject-hello */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (322184812DFC0A5E00271B33 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "IosProject-hello"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +121,7 @@
 				};
 			};
 			buildConfigurationList = 3221846A2DFC0A5C00271B33 /* Build configuration list for PBXProject "IosProject-hello" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -139,7 +133,6 @@
 			packageReferences = (
 				3221848D2DFD644600271B33 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 322184702DFC0A5C00271B33 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
