@@ -246,28 +246,122 @@
         <scene sceneID="FKP-7G-crW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="GBH-VQ-cCF" customClass="AutoDisplayMessagesTableVC" sceneMemberID="viewController">
+                <viewController id="GBH-VQ-cCF" customClass="ChatViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5jg-x8-3Sd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="대화연습" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKP-Hu-jj7">
-                                <rect key="frame" x="167" y="260" width="59" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대화 연습" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-nq-Bmj">
+                                <rect key="frame" x="25" y="89" width="77.666666666666671" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qg8-M9-irQ">
+                                <rect key="frame" x="25" y="123" width="343" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">연인의 성향을 반영한 AI와 연습하며,
+진짜 대화를 준비해보세요!</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-od-h5v">
+                                <rect key="frame" x="25" y="196" width="343" height="493"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatBubbleCell" id="ZUX-PD-myK" customClass="ChatBubbleCell" customModule="IosProject_hello" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="343" height="52.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZUX-PD-myK" id="p7I-Au-qCn">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="52.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Tn-bk5">
+                                                    <rect key="frame" x="16" y="8" width="141" height="29"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="messageLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwM-GQ-Ah7">
+                                                            <rect key="frame" x="12" y="8" width="129" height="13"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="OwM-GQ-Ah7" secondAttribute="trailing" constant="12" id="PBE-u0-KgW"/>
+                                                        <constraint firstItem="OwM-GQ-Ah7" firstAttribute="top" secondItem="K2d-Tn-bk5" secondAttribute="top" constant="8" id="h3f-Ag-yRy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="OwM-GQ-Ah7" secondAttribute="bottom" constant="8" id="nMZ-F4-Igl"/>
+                                                        <constraint firstItem="OwM-GQ-Ah7" firstAttribute="leading" secondItem="K2d-Tn-bk5" secondAttribute="leading" constant="12" id="vgv-GB-GUU"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="K2d-Tn-bk5" secondAttribute="trailing" constant="2" id="5hG-o4-Lvh"/>
+                                                <constraint firstItem="K2d-Tn-bk5" firstAttribute="top" secondItem="p7I-Au-qCn" secondAttribute="top" constant="8" id="F3X-D4-xux"/>
+                                                <constraint firstItem="K2d-Tn-bk5" firstAttribute="leading" secondItem="p7I-Au-qCn" secondAttribute="leading" constant="2" id="eO3-HF-3Oy"/>
+                                                <constraint firstAttribute="bottom" secondItem="K2d-Tn-bk5" secondAttribute="bottom" constant="8" id="zNX-fm-5fb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bubbleBackground" destination="K2d-Tn-bk5" id="hFu-kS-5kh"/>
+                                            <outlet property="leadingConstraint" destination="eO3-HF-3Oy" id="wM8-Rc-OLI"/>
+                                            <outlet property="messageLabel" destination="OwM-GQ-Ah7" id="FyV-TH-9RV"/>
+                                            <outlet property="trailingConstraint" destination="5hG-o4-Lvh" id="Dhk-V0-bKi"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="답변을 입력하세요." textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="AtX-fX-bkX">
+                                <rect key="frame" x="25" y="704" width="287" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="91G-aC-0fT"/>
+                                    <constraint firstAttribute="width" constant="287" id="OE8-8V-nXP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="done" smartInsertDeleteType="no"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-Wv-NpZ">
+                                <rect key="frame" x="317" y="704" width="51" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="pBM-ZL-IDd"/>
+                                </constraints>
+                                <color key="tintColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="paperplane.fill" catalog="system">
+                                    <color key="baseBackgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ApT-NW-nST"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AtX-fX-bkX" firstAttribute="leading" secondItem="ApT-NW-nST" secondAttribute="leading" constant="25" id="5mQ-la-d74"/>
+                            <constraint firstItem="dLX-nq-Bmj" firstAttribute="leading" secondItem="ApT-NW-nST" secondAttribute="leading" constant="25" id="CFS-Kd-pn9"/>
+                            <constraint firstItem="ApT-NW-nST" firstAttribute="trailing" secondItem="bVE-od-h5v" secondAttribute="trailing" constant="25" id="N9d-SP-ruT"/>
+                            <constraint firstItem="bVE-od-h5v" firstAttribute="leading" secondItem="ApT-NW-nST" secondAttribute="leading" constant="25" id="Xez-01-V7j"/>
+                            <constraint firstItem="JaG-Wv-NpZ" firstAttribute="leading" secondItem="AtX-fX-bkX" secondAttribute="trailing" constant="5" id="YwQ-CO-bKc"/>
+                            <constraint firstItem="AtX-fX-bkX" firstAttribute="top" secondItem="bVE-od-h5v" secondAttribute="bottom" constant="15" id="ZLZ-fA-J8S"/>
+                            <constraint firstItem="ApT-NW-nST" firstAttribute="trailing" secondItem="JaG-Wv-NpZ" secondAttribute="trailing" constant="25" id="ikk-fl-TPm"/>
+                            <constraint firstItem="JaG-Wv-NpZ" firstAttribute="bottom" secondItem="AtX-fX-bkX" secondAttribute="bottom" id="lQv-xU-sfc"/>
+                            <constraint firstItem="ApT-NW-nST" firstAttribute="bottom" secondItem="AtX-fX-bkX" secondAttribute="bottom" constant="20" id="oP4-DE-GdB"/>
+                            <constraint firstItem="dLX-nq-Bmj" firstAttribute="top" secondItem="ApT-NW-nST" secondAttribute="top" constant="30" id="pKE-fb-fSa"/>
+                            <constraint firstItem="qg8-M9-irQ" firstAttribute="top" secondItem="dLX-nq-Bmj" secondAttribute="bottom" constant="5" id="vjU-wP-JSd"/>
+                            <constraint firstItem="bVE-od-h5v" firstAttribute="top" secondItem="qg8-M9-irQ" secondAttribute="bottom" constant="20" id="vwH-T5-VrM"/>
+                            <constraint firstItem="qg8-M9-irQ" firstAttribute="leading" secondItem="dLX-nq-Bmj" secondAttribute="leading" id="zeC-rw-kRf"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="대화 연습" id="Uyb-3g-H8E">
                         <imageReference key="image" image="bubble.left.and.bubble.right.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="inputTextField" destination="AtX-fX-bkX" id="C4s-RY-xdO"/>
+                        <outlet property="sendButton" destination="JaG-Wv-NpZ" id="p9Z-8R-CQc"/>
+                        <outlet property="tableView" destination="bVE-od-h5v" id="bvZ-Ul-cQX"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1604" y="-51"/>
+            <point key="canvasLocation" x="1603.8167938931297" y="-51.408450704225352"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="TaP-qi-7HD">
@@ -430,6 +524,7 @@
         <image name="home_character2" width="603" height="847"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="megaphone.fill" catalog="system" width="128" height="112"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
