@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  IosProject-hello
 //
 //  Created by 김혜진 on 6/13/25.
