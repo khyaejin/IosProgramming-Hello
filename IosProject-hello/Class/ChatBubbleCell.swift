@@ -15,7 +15,6 @@ class ChatBubbleCell: UITableViewCell {
     func configure(with message: Message) {
         messageLabel.text = message.text
         bubbleBackground.layer.cornerRadius = 12
-//        bubbleBackground.backgroundColor = message.isUser ? .systemBlue : .lightGray
         bubbleBackground.backgroundColor = message.isUser
             ? UIColor(hex: "#0400FA") // 진한 파란색
             : UIColor(hex: "#F0F0FF") // 연한 파란색

@@ -15,13 +15,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var situationTitleLabel: UILabel! // 상황 제목 라벨
     
-    @IBOutlet weak var situationListTableView: UITableView! // 상황 리스트  테이블
+    @IBOutlet weak var situationListCollectionView: UICollectionView! // 상황 리스트  컬렉션
     
     var guides: [Guide] = []
     let guideService = GuideService()
-    
-    @IBAction func adviceButton(_ sender: Any) { // 조언 시작 버튼
-    }
 
     @IBAction func noticeButton(_ sender: Any) { // 공지사항 버튼
     }
@@ -36,20 +33,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        dataAddTest.testDatabase()
         
         // 상황 리스트 데이터 넣기
-        situationListTableView.delegate = self
-        situationListTableView.dataSource = self
+        situationListCollectionView.delegate = self
+        situationListCollectionView.dataSource = self
         
         // 상황 ID에 따라 초기화
         setupGuideList(for: "situation001")
         
     }
-    
-    
+        
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        // 둥근 테두리
+//        cell.contentView.layer.cornerRadius = 20
+//        cell.contentView.layer.masksToBounds = true
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return guides.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GuideCell", for: indexPath) as? GuideTableViewCell else {
             return UITableViewCell()
@@ -58,6 +59,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.guideLabel.text = guide.content
         return cell
     }
+    
     
     // 넘어온 텍스트들을 situationListTableView에 보여줌
     func setupGuideList(for situationId: String) {

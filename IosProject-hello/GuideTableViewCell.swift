@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuideTableViewCell: UITableViewCell {
+class GuideTableViewCell: UICollectionViewCell {
     @IBOutlet weak var guideLabel: UILabel!
     
 }
