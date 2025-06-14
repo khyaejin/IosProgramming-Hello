@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘 왔어, 내 모든 비법을 너에게 전해줄게" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krb-XH-jkX">
-                                        <rect key="frame" x="39.666666666666629" y="48" width="265.99999999999989" height="21"/>
+                                        <rect key="frame" x="38.666666666666657" y="48" width="266" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -191,8 +191,8 @@
                                 <buttonConfiguration key="configuration" style="plain" image="forward.fill" catalog="system"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pU5-ej-B9A">
-                                <rect key="frame" x="173.66666666666666" y="89" width="60.333333333333343" height="25.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
+                                <rect key="frame" x="173.66666666666666" y="89" width="62.666666666666657" height="25.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
                                 <color key="textColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -252,13 +252,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대화 연습" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-nq-Bmj">
-                                <rect key="frame" x="25" y="89" width="77.666666666666671" height="29"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <rect key="frame" x="25" y="89" width="77" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qg8-M9-irQ">
-                                <rect key="frame" x="25" y="123" width="343" height="53"/>
+                                <rect key="frame" x="25" y="123" width="220" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">연인의 성향을 반영한 AI와 연습하며,
 진짜 대화를 준비해보세요!</string>
@@ -267,7 +268,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-od-h5v">
-                                <rect key="frame" x="25" y="196" width="343" height="493"/>
+                                <rect key="frame" x="25" y="185" width="343" height="504"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatBubbleCell" id="ZUX-PD-myK" customClass="ChatBubbleCell" customModule="IosProject_hello" customModuleProvider="target">
@@ -332,6 +333,13 @@
                                     <color key="baseBackgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_character2" translatesAutoresizingMaskIntoConstraints="NO" id="qeG-Zl-nUf">
+                                <rect key="frame" x="289" y="89" width="67" height="72.666666666666686"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qeG-Zl-nUf" secondAttribute="height" multiplier="83:90" id="0uI-on-PvY"/>
+                                    <constraint firstAttribute="width" constant="67" id="zQ0-ab-j1j"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ApT-NW-nST"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -340,6 +348,7 @@
                             <constraint firstItem="dLX-nq-Bmj" firstAttribute="leading" secondItem="ApT-NW-nST" secondAttribute="leading" constant="25" id="CFS-Kd-pn9"/>
                             <constraint firstItem="ApT-NW-nST" firstAttribute="trailing" secondItem="bVE-od-h5v" secondAttribute="trailing" constant="25" id="N9d-SP-ruT"/>
                             <constraint firstItem="bVE-od-h5v" firstAttribute="leading" secondItem="ApT-NW-nST" secondAttribute="leading" constant="25" id="Xez-01-V7j"/>
+                            <constraint firstItem="ApT-NW-nST" firstAttribute="trailing" secondItem="qeG-Zl-nUf" secondAttribute="trailing" constant="37" id="YUL-H2-uC4"/>
                             <constraint firstItem="JaG-Wv-NpZ" firstAttribute="leading" secondItem="AtX-fX-bkX" secondAttribute="trailing" constant="5" id="YwQ-CO-bKc"/>
                             <constraint firstItem="AtX-fX-bkX" firstAttribute="top" secondItem="bVE-od-h5v" secondAttribute="bottom" constant="15" id="ZLZ-fA-J8S"/>
                             <constraint firstItem="ApT-NW-nST" firstAttribute="trailing" secondItem="JaG-Wv-NpZ" secondAttribute="trailing" constant="25" id="ikk-fl-TPm"/>
@@ -348,6 +357,7 @@
                             <constraint firstItem="dLX-nq-Bmj" firstAttribute="top" secondItem="ApT-NW-nST" secondAttribute="top" constant="30" id="pKE-fb-fSa"/>
                             <constraint firstItem="qg8-M9-irQ" firstAttribute="top" secondItem="dLX-nq-Bmj" secondAttribute="bottom" constant="5" id="vjU-wP-JSd"/>
                             <constraint firstItem="bVE-od-h5v" firstAttribute="top" secondItem="qg8-M9-irQ" secondAttribute="bottom" constant="20" id="vwH-T5-VrM"/>
+                            <constraint firstItem="qeG-Zl-nUf" firstAttribute="top" secondItem="ApT-NW-nST" secondAttribute="top" constant="30" id="yE3-5D-VZS"/>
                             <constraint firstItem="qg8-M9-irQ" firstAttribute="leading" secondItem="dLX-nq-Bmj" secondAttribute="leading" id="zeC-rw-kRf"/>
                         </constraints>
                     </view>
