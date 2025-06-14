@@ -21,21 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         print("✅ FirebaseApp is configured: \(FirebaseApp.app() != nil)")
 
-        let db = Firestore.firestore()
-
-        // 간단한 테스트용 회원 정보 저장
-        db.collection("users").document("testUser01").setData([
-            "name": "테스트용 유저",
-            "age": 20,
-            "gender": "female",
-            "mbti": "ENFP"
-        ]) { error in
-            if let error = error {
-                print("🔥 저장 실패: \(error.localizedDescription)")
-            } else {
-                print("✅ 저장 성공: testUser01")
-            }
-        }
         
         return true
     }
