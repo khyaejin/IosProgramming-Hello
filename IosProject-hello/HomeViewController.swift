@@ -9,17 +9,30 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-        
-    override func viewDidLoad() {
+    
+    @IBOutlet weak var characterImageView: UIImageView! // 캐릭터 이미지
+    
+    @IBOutlet weak var dialogueLabel: UILabel! // 말풍선 내용
+    
+    @IBOutlet weak var situationTitleLabel: UILabel! // 상황 제목 라벨
+    
+    @IBOutlet weak var situationListTableView: UITableView!
+    
+    @IBAction func adviceButton(_ sender: Any) { // 조언 시작 버튼
+    }
+
+    @IBAction func noticeButton(_ sender: Any) { // 공지사항 버튼
+    }
+    @IBAction func letterboxButton(_ sender: Any) { // 우편함 버튼
+    }
+    
+        override func viewDidLoad() {
         super.viewDidLoad()
 
         // 테스트 코드 실행
 //        testCreateUserAndMemberAndSituation()
     }
-    
-    
-    
+        
     func testCreateUserAndMemberAndSituation() {
         let userService = UserService()
         let memberService = MemberService()
@@ -32,15 +45,15 @@ class HomeViewController: UIViewController {
         let situation = Situation(id: "situation001", description: "소개팅 첫만남")
 
         userService.createUser(user: user) { error in
-            print(error == nil ? "유저 생성 성공" : "유저 생성 실패: \(error!.localizedDescription)")
+            print(error == nil ? "유저 생성 성공!" : "유저 생성 실패..: \(error!.localizedDescription)")
         }
 
         memberService.createMember(member: member) { error in
-            print(error == nil ? "멤버 생성 성공" : "멤버 생성 실패: \(error!.localizedDescription)")
+            print(error == nil ? "멤버 생성 성공!" : "멤버 생성 실패..: \(error!.localizedDescription)")
         }
         
         situationService.createSituation(situation: situation){ error in
-            print(error == nil ? "상황 생성 성공" : "상황 생성 실패: \(error!.localizedDescription)")
+            print(error == nil ? "상황 생성 성공!" : "상황 생성 실패..: \(error!.localizedDescription)")
         }
     }
 
