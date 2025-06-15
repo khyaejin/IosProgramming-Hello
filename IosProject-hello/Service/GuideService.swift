@@ -25,7 +25,7 @@ final class GuideService {
             .whereField("situationId", isEqualTo: situationId)
             .getDocuments { snapshot, error in
                 if let error = error {
-                    print("❌ 지침 불러오기 실패: \(error.localizedDescription)")
+                    print("지침 불러오기 실패: \(error.localizedDescription)")
                     completion([])
                     return
                 }

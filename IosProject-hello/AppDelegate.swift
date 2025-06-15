@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //firebase 연결
         FirebaseApp.configure()
-        print("✅ FirebaseApp is configured: \(FirebaseApp.app() != nil)")
+        print(" FirebaseApp is configured: \(FirebaseApp.app() != nil)")
 
         
         return true

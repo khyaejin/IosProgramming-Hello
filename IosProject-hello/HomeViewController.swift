@@ -6,8 +6,10 @@
 //
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class HomeViewController: UIViewController,
+                          UICollectionViewDataSource,
+                          UICollectionViewDelegate,
+                          UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var characterImageView: UIImageView! // 캐릭터 이미지
     
@@ -27,17 +29,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 테스트 코드 실행
-//        let dataAddTest = DataAddTest()
-//        dataAddTest.testDatabase()
-        
         // 상황 리스트 데이터 넣기
         situationListCollectionView.delegate = self
         situationListCollectionView.dataSource = self
         
         // 상황 ID에 따라 초기화
         setupGuideList(for: "situation001")
+        
+        if let layout = situationListCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 16 // 카드 간 간격
+            layout.minimumInteritemSpacing = 0
+        }
+
+        situationListCollectionView.isPagingEnabled = false
+        situationListCollectionView.showsHorizontalScrollIndicator = false
+          
+        // 테스트 코드 실행
+//        let dataAddTest = DataAddTest()
+//        dataAddTest.testDatabase()
         
     }
         
@@ -47,21 +57,35 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        cell.contentView.layer.masksToBounds = true
 //    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return guides.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GuideCell", for: indexPath) as? GuideTableViewCell else {
-            return UITableViewCell()
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let guide = guides[indexPath.item]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GuideCollectionViewCell", for: indexPath) as? GuideCollectionViewCell else {
+            return UICollectionViewCell()
         }
-        let guide = guides[indexPath.row]
         cell.guideLabel.text = guide.content
         return cell
     }
     
+    // 셀 크기 지정
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: collectionView.frame.height * 0.9)
+    }
+
+
+    // 셀 간 간격 설정 (optional)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
     
-    // 넘어온 텍스트들을 situationListTableView에 보여줌
+    
+    // 넘어온 텍스트들을 카드에 보여줌
     func setupGuideList(for situationId: String) {
         fetchGuidesForSituation(situationId)
     }
@@ -71,7 +95,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guideService.fetchGuides(for: situationId) { [weak self] result in
             DispatchQueue.main.async {
                 self?.guides = result
-                self?.situationListTableView.reloadData()
+                self?.situationListCollectionView.reloadData()
             }
         }
     }
