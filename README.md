@@ -1,6 +1,7 @@
 ## 🌈 ERD
 <img width="559" alt="image" src="https://github.com/user-attachments/assets/dd7b1798-8fc4-41e6-855c-b00b8b30abb4" />
 
+URL: https://www.erdcloud.com/d/PwHRpq56BDBb9Z2ww
 <br><br>
 
 ## 🔀 Git 브랜치 전략
