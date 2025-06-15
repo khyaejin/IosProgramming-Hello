@@ -74,14 +74,14 @@ class HomeViewController: UIViewController,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: collectionView.frame.height * 0.9)
+        return CGSize(width: 130, height: collectionView.frame.height * 0.9)
     }
 
 
     // 셀 간 간격 설정 (optional)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 14
     }
     
     
