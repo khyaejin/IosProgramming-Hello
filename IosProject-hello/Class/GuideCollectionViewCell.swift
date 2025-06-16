@@ -7,14 +7,24 @@
 
 import UIKit
 
-class GuideCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var guideLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentView.layer.cornerRadius = 12
-        contentView.layer.masksToBounds = true
-    }
-    
+protocol GuideCollectionViewCellDelegate: AnyObject {
+    func guideCardTapped(from cell: GuideCollectionViewCell)
 }
 
+class GuideCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var guideCard: UIImageView!
+    @IBOutlet weak var guideLabel: UILabel!
+    
+    weak var delegate: GuideCollectionViewCellDelegate?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        guideCard.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(cardTapped))
+        guideCard.addGestureRecognizer(tap)
+    }
+
+    @objc func cardTapped() {
+        delegate?.guideCardTapped(from: self)
+    }
+}

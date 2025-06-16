@@ -115,7 +115,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="34K-dU-bgk">
                                 <rect key="frame" x="25" y="542.66666666666663" width="343" height="206.33333333333337"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AUJ-C6-Edh">
                                     <size key="itemSize" width="129" height="190"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -130,40 +130,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="129" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="guideLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cmm-Gd-klz">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home_character" translatesAutoresizingMaskIntoConstraints="NO" id="4Oc-7d-AqG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="129" height="190"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="guideLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cmm-Gd-klz">
                                                     <rect key="frame" x="20" y="149.66666666666666" width="89" height="20.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="OL7-LN-bNL">
-                                                    <rect key="frame" x="20" y="45" width="89" height="66"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="OL7-LN-bNL" secondAttribute="height" multiplier="73:54" id="Z3x-XT-gwu"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비법카드" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tc-lz-cKG">
-                                                    <rect key="frame" x="42" y="131" width="45" height="15.666666666666657"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="13"/>
-                                                    <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Cmm-Gd-klz" secondAttribute="bottom" constant="20" id="8dr-fU-Hpr"/>
-                                                <constraint firstItem="3Tc-lz-cKG" firstAttribute="centerX" secondItem="rMd-yo-rKc" secondAttribute="centerX" id="AOJ-ao-gb1"/>
-                                                <constraint firstItem="OL7-LN-bNL" firstAttribute="leading" secondItem="rMd-yo-rKc" secondAttribute="leading" constant="20" id="CLS-AL-yfu"/>
                                                 <constraint firstItem="Cmm-Gd-klz" firstAttribute="leading" secondItem="rMd-yo-rKc" secondAttribute="leading" constant="20" id="QK9-kp-wQH"/>
-                                                <constraint firstAttribute="trailing" secondItem="OL7-LN-bNL" secondAttribute="trailing" constant="20" id="QKo-Sk-WCP"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cmm-Gd-klz" secondAttribute="trailing" constant="20" id="UWu-Ex-mGV"/>
-                                                <constraint firstItem="3Tc-lz-cKG" firstAttribute="top" secondItem="OL7-LN-bNL" secondAttribute="bottom" constant="20" id="bNp-Er-Ai5"/>
-                                                <constraint firstItem="OL7-LN-bNL" firstAttribute="top" secondItem="rMd-yo-rKc" secondAttribute="top" constant="45" id="e3U-7M-f33"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="129" height="190"/>
                                         <connections>
-                                            <outlet property="guideLabel" destination="Cmm-Gd-klz" id="or5-yU-UgV"/>
+                                            <outlet property="guideCard" destination="4Oc-7d-AqG" id="P3w-7m-8ei"/>
+                                            <outlet property="guideLabel" destination="Cmm-Gd-klz" id="KJN-PB-2yd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -272,7 +260,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GnA-XW-jWM"/>
-                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="GnA-XW-jWM" firstAttribute="trailing" secondItem="34K-dU-bgk" secondAttribute="trailing" constant="25" id="13F-yI-NW1"/>
                             <constraint firstItem="NLZ-rJ-IHM" firstAttribute="centerX" secondItem="L7v-Sy-KLs" secondAttribute="centerX" id="2fy-MV-PcP"/>
@@ -317,7 +305,6 @@
         <!--대화 연습-->
         <scene sceneID="FKP-7G-crW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="GBH-VQ-cCF" customClass="ChatViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5jg-x8-3Sd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -442,6 +429,7 @@
                         <outlet property="tableView" destination="bVE-od-h5v" id="bvZ-Ul-cQX"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1603.8167938931297" y="-51.408450704225352"/>
         </scene>
@@ -603,14 +591,17 @@
         <image name="envelope.open.fill" catalog="system" width="128" height="112"/>
         <image name="forward.fill" catalog="system" width="128" height="76"/>
         <image name="home_bubble_white" width="386" height="102"/>
+        <image name="home_character" width="420" height="423"/>
         <image name="home_character2" width="603" height="847"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="logo" width="419" height="411"/>
         <image name="megaphone.fill" catalog="system" width="128" height="112"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
