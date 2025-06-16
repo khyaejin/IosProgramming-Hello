@@ -641,6 +641,21 @@
             </objects>
             <point key="canvasLocation" x="1603.8167938931297" y="1253.5211267605634"/>
         </scene>
+        <!--Member Setting View Controller-->
+        <scene sceneID="JeV-88-tSV">
+            <objects>
+                <viewController storyboardIdentifier="MemberSettingViewController" id="XVz-wG-Wwc" customClass="MemberSettingViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AXY-cN-WO0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="r2B-N6-z7P"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qJv-Sk-46y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2361" y="-701"/>
+        </scene>
     </scenes>
     <resources>
         <image name="book.closed.fill" catalog="system" width="115" height="128"/>
