@@ -123,6 +123,10 @@ class HomeViewController: UIViewController,
         })
     }
     
+    // 공략 상대 설정하기 버튼 클릭 시
+    @IBAction func AddNewmember(_ sender: Any) {
+    }
+
     @IBAction func noticeButton(_ sender: Any) {}
     @IBAction func letterboxButton(_ sender: Any) {}
 }
