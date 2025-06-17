@@ -10,17 +10,19 @@ import Foundation
 struct Member {
     var id: String
     var userId: String // 이 멤버가 연결된 사용자
-    var name: String
+    var name: String // 닉네임
     var age: Int
     var gender: String
     var mbti: String
     var tendency1: String
     var tendency2: String
     var tendency3: String
-    var loveType: String
-    var prompt: String
-    var relationType: String // 관계의 성격 (ex. 썸, 친구, 짝사랑)
+    var characteristic: String // 특징
+    var prompt: String // 상황에 따른 프롬프트
+    var relationType: String // 관계의 성격 (ex. 연인, 친구, 가족, 선배, 상사 등)
+    var avatarURL: String // Storage에 저장된 이미지 경로
 
+    // Firestore에 저장하기 위한 Dictionary 변환
     static func toDict(_ member: Member) -> [String: Any] {
         return [
             "id": member.id,
@@ -32,12 +34,14 @@ struct Member {
             "tendency1": member.tendency1,
             "tendency2": member.tendency2,
             "tendency3": member.tendency3,
-            "loveType": member.loveType,
+            "characteristic": member.characteristic,
             "prompt": member.prompt,
-            "relationType": member.relationType
+            "relationType": member.relationType,
+            "avatarURL": member.avatarURL
         ]
     }
 
+    // Firestore에서 받아온 Dictionary를 Member로 변환
     static func fromDict(_ dict: [String: Any]) -> Member? {
         guard let id = dict["id"] as? String,
               let userId = dict["userId"] as? String,
@@ -48,11 +52,27 @@ struct Member {
               let tendency1 = dict["tendency1"] as? String,
               let tendency2 = dict["tendency2"] as? String,
               let tendency3 = dict["tendency3"] as? String,
-              let loveType = dict["loveType"] as? String,
+              let characteristic = dict["characteristic"] as? String,
               let prompt = dict["prompt"] as? String,
-              let relationType = dict["relationType"] as? String else {
+              let relationType = dict["relationType"] as? String,
+              let avatarURL = dict["avatarURL"] as? String else {
             return nil
         }
-        return Member(id: id, userId: userId, name: name, age: age, gender: gender, mbti: mbti, tendency1: tendency1, tendency2: tendency2, tendency3: tendency3, loveType: loveType, prompt: prompt, relationType: relationType)
+
+        return Member(
+            id: id,
+            userId: userId,
+            name: name,
+            age: age,
+            gender: gender,
+            mbti: mbti,
+            tendency1: tendency1,
+            tendency2: tendency2,
+            tendency3: tendency3,
+            characteristic: characteristic,
+            prompt: prompt,
+            relationType: relationType,
+            avatarURL: avatarURL
+        )
     }
 }

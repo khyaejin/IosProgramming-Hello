@@ -11,6 +11,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    var member: Member?
 
 //    var messages: [Message] = []
     var messages = [
