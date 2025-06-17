@@ -26,9 +26,15 @@ class AddMemberViewController: UIViewController,
 
     // MARK: - 값들 관리
     var selectedImage: UIImage?
-    let tendencyOptions = ["공손한", "유머", "친근한", "상냥한", "분석적", "격식", "감성적", "논리적", "시크", "다정한", "귀여운", "예의바른", "깔끔한", "활기찬", "쿨한"]
+    let tendencyOptions = [
+        "다정한", "유머러스한", "친근한", "차분한", "논리적인",
+        "감성적인", "직설적인", "쿨한", "장난기 있는", "배려 깊은",
+        "격식 있는", "믿음직한", "적극적인", "깔끔한", "공감 잘하는",
+        "무던한", "애교있는"
+    ]
+
     var selectedTendencies: [String] = []
-    let relationTypes = ["연인", "친구", "동료", "상사", "후배"]
+    let relationTypes = ["연인", "친구", "동료", "상사", "후배", "지인", "가족"]
     var selectedRelationType: String?
     var selectedMBTI: String?
     weak var delegate: MemberSettingDelegate?
@@ -62,7 +68,10 @@ class AddMemberViewController: UIViewController,
 
     // MARK: - MBTI 메뉴 설정
     func configureMBTIMenu() {
-        let mbtiTypes = ["INTJ", "ENFP", "ISTP", "ESFJ"]
+        let mbtiTypes = ["모름", "ISTJ", "ISFJ", "INFJ", "INTJ",
+                         "ISTP", "ISFP", "INFP", "INTP",
+                         "ESTP", "ESFP", "ENFP", "ENTP",
+                         "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
         let actions = mbtiTypes.map { type in
             UIAction(title: type, handler: { [weak self] _ in
                 self?.mbtiButton.setTitle(type, for: .normal)

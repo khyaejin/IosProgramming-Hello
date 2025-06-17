@@ -12,8 +12,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     var member: Member?
-
     var messages: [Message] = []
+    let openAI = OpenAIService()
+
 
     // 사용자 입력 값
     var nicknameForMe: String = ""
@@ -49,11 +50,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             present(prefaceVC, animated: true)
         }
     }
-
+    
     func requestInitialMessageFromAI() {
         guard let member = member else { return }
 
-        let prompt = """
+        let systemPrompt = """
         당신은 다음 정보를 가진 가상 인물입니다:
         이름: \(member.name)
         나이: \(member.age)
@@ -65,17 +66,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         사용자는 당신에게 "\(nicknameForMe)"라는 호칭으로 불리길 원합니다.
         다음 상황을 시뮬레이션합니다: "\(situationPrompt)"
-
-        이에 맞춰 자연스럽게 첫 인사 메시지를 보내주세요.
         """
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let aiMessage = Message(text: "[AI 응답 예시] \(prompt.prefix(50))...", isUser: false, timestamp: Date())
-            self.messages.append(aiMessage)
-            self.tableView.reloadData()
-            self.scrollToBottom()
+        openAI.sendChat(messages: [], systemPrompt: systemPrompt, userInput: "대화를 시작해줘.") { response in
+            DispatchQueue.main.async {
+                if let reply = response {
+                    let aiMessage = Message(text: reply, isUser: false, timestamp: Date())
+                    self.messages.append(aiMessage)
+                    self.tableView.reloadData()
+                    self.scrollToBottom()
+                } else {
+                    print("OpenAI 응답 실패")
+                }
+            }
         }
     }
+
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         guard let text = inputTextField.text, !text.isEmpty else { return }
@@ -92,14 +98,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func sendToAI(_ prompt: String) {
-        // 실제 OpenAI API 호출 부분으로 교체 예정
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let aiReply = Message(text: "AI 응답: \(prompt)", isUser: false, timestamp: Date())
-            self.messages.append(aiReply)
-            self.tableView.reloadData()
-            self.scrollToBottom()
+        let systemPrompt = "" // 초기 인격 설정은 이미 적용되었으므로 비워둠
+        openAI.sendChat(messages: messages, systemPrompt: systemPrompt, userInput: prompt) { response in
+            DispatchQueue.main.async {
+                if let reply = response {
+                    let aiMessage = Message(text: reply, isUser: false, timestamp: Date())
+                    self.messages.append(aiMessage)
+                    self.tableView.reloadData()
+                    self.scrollToBottom()
+                } else {
+                    print("AI 응답 실패")
+                }
+            }
         }
     }
+
 
     func scrollToBottom() {
         guard messages.count > 0 else { return }

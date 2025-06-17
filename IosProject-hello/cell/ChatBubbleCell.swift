@@ -4,6 +4,7 @@
 //
 //  Created by 김혜진 on 6/15/25.
 //
+
 import UIKit
 
 class ChatBubbleCell: UITableViewCell {

@@ -433,6 +433,9 @@
                                 <buttonConfiguration key="configuration" style="tinted" image="paperplane.fill" catalog="system">
                                     <color key="baseBackgroundColor" red="0.96078431369999995" green="0.95686274510000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="GBH-VQ-cCF" eventType="touchUpInside" id="3xR-zN-N37"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ApT-NW-nST"/>
