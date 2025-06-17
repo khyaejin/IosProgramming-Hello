@@ -460,7 +460,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="1865"/>
+            <point key="canvasLocation" x="3990" y="1851"/>
+        </scene>
+        <!--Chat Preface View Controller-->
+        <scene sceneID="gi4-Xp-Ak7">
+            <objects>
+                <viewController storyboardIdentifier="ChatPrefaceViewController" id="Bur-Za-ey3" customClass="ChatPrefaceViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wpd-QF-M6b">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HuG-Pu-zSd">
+                                <rect key="frame" x="60" y="545" width="231" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상대방에게 당신이 불리는 호칭을 적어주세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pq9-MW-CIa">
+                                <rect key="frame" x="59" y="312" width="274" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chatting_character" translatesAutoresizingMaskIntoConstraints="NO" id="3w9-hK-xGq">
+                                <rect key="frame" x="102" y="117" width="189" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OkJ-tx-bqO">
+                                <rect key="frame" x="60" y="388" width="231" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0q-nO-hzM">
+                                <rect key="frame" x="169.66666666666666" y="664" width="54" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="완료"/>
+                                <connections>
+                                    <action selector="submitTapped:" destination="Bur-Za-ey3" eventType="touchUpInside" id="sU4-6t-ZTa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6U-6z-Des">
+                                <rect key="frame" x="59" y="469" width="273" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">시뮬레이션 대화를 하고 싶은 상황을 
+최대한 자세히 설명해주세요.</string>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QIH-rW-8yN"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="nicknameTextField" destination="OkJ-tx-bqO" id="MOH-9F-NFo"/>
+                        <outlet property="situationTextField" destination="HuG-Pu-zSd" id="7L5-Op-GaO"/>
+                        <outlet property="submitButton" destination="N0q-nO-hzM" id="kbf-48-ail"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRI-qw-Xgp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217.5572519083967" y="1851.4084507042255"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="TaP-qi-7HD">
@@ -953,6 +1016,7 @@
     <resources>
         <image name="book.closed.fill" catalog="system" width="115" height="128"/>
         <image name="bubble.left.and.bubble.right.fill" catalog="system" width="128" height="102"/>
+        <image name="chatting_character" width="1824" height="1630"/>
         <image name="document.fill" catalog="system" width="115" height="128"/>
         <image name="envelope.open.fill" catalog="system" width="128" height="112"/>
         <image name="forward.fill" catalog="system" width="128" height="76"/>

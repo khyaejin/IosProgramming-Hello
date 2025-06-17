@@ -13,57 +13,68 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var sendButton: UIButton!
     var member: Member?
 
-//    var messages: [Message] = []
-    var messages = [
-               Message(text: "안녕하세요! 반가워요 😊", isUser: false, timestamp: Date()),
-               Message(text: "안녕하세요~ ae연인이랑 대화해볼래요!", isUser: true, timestamp: Date()),
-               Message(text: "좋아요! 무엇이든 물어보세요 🤖", isUser: false, timestamp: Date()),
-               Message(text: "안녕하세요~ ae연인이랑 대화해볼래요!", isUser: true, timestamp: Date()),
-               Message(text: "좋아요! 무엇이든 물어보세요 🤖", isUser: false, timestamp: Date()),
-               Message(text: "안녕하세요~ ae연인이랑 대화해볼래요!", isUser: true, timestamp: Date()),
-               Message(text: "좋아요! 무엇이든 물어보세요 🤖", isUser: false, timestamp: Date()),
-               Message(text: "안녕하세요~ ae연인이랑 대화해볼래요!", isUser: true, timestamp: Date()),
-               Message(text: "좋아요! 무엇이든 물어보세요 🤖", isUser: false, timestamp: Date()),
-               
-           ]
+    var messages: [Message] = []
+
+    // 사용자 입력 값
+    var nicknameForMe: String = ""
+    var situationPrompt: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-        
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100  // 적절한 초기 높이 설정
-
-        tableView.reloadData()
-        
-        if let member = member {
-            print("선택된 멤버: \(member.name), id: \(member.id)")
-            // 이 멤버를 기반으로 OpenAI 채팅 초기화
-        }
-
+        tableView.estimatedRowHeight = 100
     }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("메시지 수: \(messages.count)")
-            return messages.count
-        
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 첫 입장 시 모달 띄우기
+        if messages.isEmpty {
+            presentChatPreface()
         }
+    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
-//        print(" 셀 생성: \(message.text) | isUser: \(message.isUser)")
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleCell", for: indexPath) as? ChatBubbleCell else {
-//            print(" 셀 캐스팅 실패")
-            return UITableViewCell()
+    func presentChatPreface() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let prefaceVC = storyboard.instantiateViewController(withIdentifier: "ChatPrefaceViewController") as? ChatPrefaceViewController {
+            prefaceVC.modalPresentationStyle = .formSheet
+            prefaceVC.onSubmit = { [weak self] nickname, situation in
+                self?.nicknameForMe = nickname
+                self?.situationPrompt = situation
+                self?.requestInitialMessageFromAI()
+            }
+            present(prefaceVC, animated: true)
         }
+    }
 
-        cell.configure(with: message)
-        return cell
+    func requestInitialMessageFromAI() {
+        guard let member = member else { return }
+
+        let prompt = """
+        당신은 다음 정보를 가진 가상 인물입니다:
+        이름: \(member.name)
+        나이: \(member.age)
+        성별: \(member.gender)
+        MBTI: \(member.mbti)
+        성향: \(member.tendency1), \(member.tendency2), \(member.tendency3)
+        특성: \(member.characteristic)
+        관계: \(member.relationType)
+
+        사용자는 당신에게 "\(nicknameForMe)"라는 호칭으로 불리길 원합니다.
+        다음 상황을 시뮬레이션합니다: "\(situationPrompt)"
+
+        이에 맞춰 자연스럽게 첫 인사 메시지를 보내주세요.
+        """
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let aiMessage = Message(text: "[AI 응답 예시] \(prompt.prefix(50))...", isUser: false, timestamp: Date())
+            self.messages.append(aiMessage)
+            self.tableView.reloadData()
+            self.scrollToBottom()
+        }
     }
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
@@ -81,7 +92,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func sendToAI(_ prompt: String) {
-        // AI 호출 초안
+        // 실제 OpenAI API 호출 부분으로 교체 예정
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             let aiReply = Message(text: "AI 응답: \(prompt)", isUser: false, timestamp: Date())
             self.messages.append(aiReply)
@@ -94,5 +105,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard messages.count > 0 else { return }
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+
+    // UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = messages[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleCell", for: indexPath) as? ChatBubbleCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: message)
+        return cell
     }
 }
