@@ -4,31 +4,33 @@
 //
 //  Created by 김혜진 on 6/17/25.
 //
-
 import UIKit
 
 class MemberCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    private let minimumCellSize = CGSize(width: 100, height: 100)
-    private let cellSpacing: CGFloat = 8
-    private let sideInset: CGFloat = 12
+    private let cellSpacing: CGFloat = 30       // 셀 간 간격
+    private let sideInset: CGFloat = 25         // 좌우 여백
+    private let verticalInset: CGFloat = 16     // 상하 여백
 
     override func prepare() {
         super.prepare()
 
         guard let collectionView = self.collectionView else { return }
 
+        // 가로 스크롤 설정
         scrollDirection = .horizontal
 
-        // 셀 크기 계산 (높이 고정, 너비는 일정 수 이하로 조절 가능)
-        let height = collectionView.bounds.height - sectionInset.top - sectionInset.bottom
-        let width = max(minimumCellSize.width, height * 0.85)
+        // 인셋 설정
+        sectionInset = UIEdgeInsets(top: verticalInset, left: sideInset, bottom: verticalInset, right: sideInset)
 
-        itemSize = CGSize(width: width, height: height)
+        // 셀 크기 계산
+        let cellWidth: CGFloat = 230
+        let cellHeight: CGFloat = 300
 
+        itemSize = CGSize(width: cellWidth, height: cellHeight)
+
+        // 셀 사이 간격
         minimumInteritemSpacing = cellSpacing
-        minimumLineSpacing = 0
-
-        sectionInset = UIEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
+        minimumLineSpacing = cellSpacing
     }
 }

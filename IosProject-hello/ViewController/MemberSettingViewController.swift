@@ -24,7 +24,10 @@ class MemberSettingViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.contentInset = UIEdgeInsets(top: 16, left: 25, bottom: 16, right: 25)
+
+        collectionView.backgroundColor = .clear
+
         fetchMembers()
     }
 
@@ -48,7 +51,7 @@ class MemberSettingViewController: UIViewController {
                 
                 print("가져온 멤버 수: \(self.members.count)")
                 for m in self.members {
-                    print("👤 \(m.name), 이미지: \(m.avatarURL)")
+                    print(" \(m.name), 이미지: \(m.avatarURL)")
                 }
 
             }
