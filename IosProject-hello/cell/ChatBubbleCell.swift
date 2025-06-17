@@ -15,6 +15,9 @@ class ChatBubbleCell: UITableViewCell {
 
     func configure(with message: Message) {
         messageLabel.text = message.text
+        messageLabel.numberOfLines = 0
+        messageLabel.lineBreakMode = .byWordWrapping
+
         bubbleBackground.layer.cornerRadius = 12
         bubbleBackground.backgroundColor = message.isUser
             ? UIColor(hex: "#0400FA") // 진한 파란색
@@ -25,3 +28,4 @@ class ChatBubbleCell: UITableViewCell {
         trailingConstraint.isActive = message.isUser
     }
 }
+

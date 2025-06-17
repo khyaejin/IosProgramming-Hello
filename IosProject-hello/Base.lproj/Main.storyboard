@@ -380,7 +380,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Tn-bk5">
-                                                    <rect key="frame" x="16" y="8" width="141" height="29"/>
+                                                    <rect key="frame" x="16" y="8" width="269" height="34"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="messageLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwM-GQ-Ah7">
                                                             <rect key="frame" x="12" y="8" width="129" height="13"/>
@@ -405,6 +405,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="K2d-Tn-bk5" secondAttribute="bottom" constant="8" id="zNX-fm-5fb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98169111389999997" green="0.72793947800000003" blue="0.9778841922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="bubbleBackground" destination="K2d-Tn-bk5" id="hFu-kS-5kh"/>
                                             <outlet property="leadingConstraint" destination="eO3-HF-3Oy" id="wM8-Rc-OLI"/>
@@ -463,7 +464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3990" y="1851"/>
+            <point key="canvasLocation" x="3988.5496183206105" y="1850.7042253521129"/>
         </scene>
         <!--Chat Preface View Controller-->
         <scene sceneID="gi4-Xp-Ak7">
