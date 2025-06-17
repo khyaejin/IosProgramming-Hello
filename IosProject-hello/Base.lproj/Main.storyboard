@@ -372,18 +372,18 @@
                                 <rect key="frame" x="25" y="89" width="343" height="649"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatBubbleCell" id="ZUX-PD-myK" customClass="ChatBubbleCell" customModule="IosProject_hello" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="343" height="52.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatBubbleCell" rowHeight="103" id="ZUX-PD-myK" customClass="ChatBubbleCell" customModule="IosProject_hello" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="343" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZUX-PD-myK" id="p7I-Au-qCn">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="52.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Tn-bk5">
-                                                    <rect key="frame" x="16" y="8" width="269" height="34"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2d-Tn-bk5">
+                                                    <rect key="frame" x="2" y="8" width="339" height="87"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="messageLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwM-GQ-Ah7">
-                                                            <rect key="frame" x="12" y="8" width="129" height="13"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="messageLabel" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwM-GQ-Ah7">
+                                                            <rect key="frame" x="12" y="8" width="315" height="71"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -391,21 +391,21 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="OwM-GQ-Ah7" firstAttribute="bottom" secondItem="K2d-Tn-bk5" secondAttribute="bottom" constant="-8" id="Cq8-uM-8sM"/>
                                                         <constraint firstAttribute="trailing" secondItem="OwM-GQ-Ah7" secondAttribute="trailing" constant="12" id="PBE-u0-KgW"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="ROy-vi-m2g"/>
                                                         <constraint firstItem="OwM-GQ-Ah7" firstAttribute="top" secondItem="K2d-Tn-bk5" secondAttribute="top" constant="8" id="h3f-Ag-yRy"/>
-                                                        <constraint firstAttribute="bottom" secondItem="OwM-GQ-Ah7" secondAttribute="bottom" constant="8" id="nMZ-F4-Igl"/>
                                                         <constraint firstItem="OwM-GQ-Ah7" firstAttribute="leading" secondItem="K2d-Tn-bk5" secondAttribute="leading" constant="12" id="vgv-GB-GUU"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="K2d-Tn-bk5" secondAttribute="trailing" constant="2" id="5hG-o4-Lvh"/>
-                                                <constraint firstItem="K2d-Tn-bk5" firstAttribute="top" secondItem="p7I-Au-qCn" secondAttribute="top" constant="8" id="F3X-D4-xux"/>
+                                                <constraint firstItem="K2d-Tn-bk5" firstAttribute="top" secondItem="p7I-Au-qCn" secondAttribute="top" constant="8" id="8Sb-kO-TTA"/>
                                                 <constraint firstItem="K2d-Tn-bk5" firstAttribute="leading" secondItem="p7I-Au-qCn" secondAttribute="leading" constant="2" id="eO3-HF-3Oy"/>
-                                                <constraint firstAttribute="bottom" secondItem="K2d-Tn-bk5" secondAttribute="bottom" constant="8" id="zNX-fm-5fb"/>
+                                                <constraint firstItem="K2d-Tn-bk5" firstAttribute="bottom" secondItem="p7I-Au-qCn" secondAttribute="bottom" constant="-8" id="zNX-fm-5fb"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.98169111389999997" green="0.72793947800000003" blue="0.9778841922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="bubbleBackground" destination="K2d-Tn-bk5" id="hFu-kS-5kh"/>
                                             <outlet property="leadingConstraint" destination="eO3-HF-3Oy" id="wM8-Rc-OLI"/>
@@ -689,7 +689,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대화 연습" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpF-gI-Boq">
-                                <rect key="frame" x="25" y="133" width="77" height="25.333333333333343"/>
+                                <rect key="frame" x="25" y="133" width="77" height="28"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -765,19 +765,19 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x0n-O1-tZL">
-                                <rect key="frame" x="25" y="117" width="220" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">상대의 성향을 반영한 AI와 연습하며,
-완벽한 대화를 준비해보세요!</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="대화상대 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4C-Yz-WP0">
                                 <rect key="frame" x="152" y="254" width="93" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x0n-O1-tZL">
+                                <rect key="frame" x="25" y="166" width="220" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">상대의 성향을 반영한 AI와 연습하며,
+완벽한 대화를 준비해보세요!</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

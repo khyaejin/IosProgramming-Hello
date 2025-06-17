@@ -26,7 +26,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 60
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +64,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         특성: \(member.characteristic)
         관계: \(member.relationType)
 
-        사용자는 당신에게 "\(nicknameForMe)"라는 호칭으로 불리길 원합니다.
+        사용자는 당신에게 "\(nicknameForMe)"라는 호칭으로 불립니다.
         다음 상황을 시뮬레이션합니다: "\(situationPrompt)"
         """
 
@@ -74,6 +74,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let aiMessage = Message(text: reply, isUser: false, timestamp: Date())
                     self.messages.append(aiMessage)
                     self.tableView.reloadData()
+                    self.tableView.layoutIfNeeded() // 강제 레이아웃 적용
                     self.scrollToBottom()
                 } else {
                     print("OpenAI 응답 실패")
@@ -117,8 +118,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func scrollToBottom() {
         guard messages.count > 0 else { return }
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        print("Scrolling to row:", indexPath.row)
+
+        if let cell = tableView.cellForRow(at: indexPath) {
+            print("Last cell height:", cell.frame.height)
+        }
+
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
+
 
     // UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,6 +139,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return UITableViewCell()
         }
         cell.configure(with: message)
+
+        print("cell height @ row \(indexPath.row):", cell.frame.height)
         return cell
     }
+
 }
