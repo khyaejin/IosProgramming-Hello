@@ -38,6 +38,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.estimatedRowHeight = 100  // 적절한 초기 높이 설정
 
         tableView.reloadData()
+        
+        if let member = member {
+            print("선택된 멤버: \(member.name), id: \(member.id)")
+            // 이 멤버를 기반으로 OpenAI 채팅 초기화
+        }
 
     }
     

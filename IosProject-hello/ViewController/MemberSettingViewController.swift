@@ -78,18 +78,31 @@ extension MemberSettingViewController: UICollectionViewDataSource, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == members.count {
-            // 스토리보드에서 AddMemberViewController 인스턴스화 + delegate 연결
+            print("멤버 추가 셀 클릭됨")
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let addVC = storyboard.instantiateViewController(withIdentifier: "AddMemberViewController") as? AddMemberViewController {
                 addVC.delegate = self
                 present(addVC, animated: true)
             }
         } else {
-            let chatVC = ChatViewController()
-            chatVC.member = members[indexPath.item]
-            navigationController?.pushViewController(chatVC, animated: true)
+            print("멤버 셀 클릭됨: \(indexPath.item)번 셀")
+
+            let selectedMember = members[indexPath.item]
+            print("선택된 멤버 이름: \(selectedMember.name), ID: \(selectedMember.id)")
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let chatVC = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                chatVC.member = selectedMember
+                print("ChatViewController 인스턴스 생성 완료")
+                navigationController?.pushViewController(chatVC, animated: true)
+            } else {
+                print("ChatViewController 인스턴스화 실패 (Storyboard ID 확인 필요)")
+            }
         }
     }
+
+
 }
 
 // MARK: - AddMemberViewController Delegate 구현
