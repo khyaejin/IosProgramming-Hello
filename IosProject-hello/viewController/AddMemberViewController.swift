@@ -152,7 +152,7 @@ class AddMemberViewController: UIViewController,
         let tendency1 = selectedTendencies[safe: 0] ?? ""
         let tendency2 = selectedTendencies[safe: 1] ?? ""
         let tendency3 = selectedTendencies[safe: 2] ?? ""
-        let prompt = "기본 프롬프트"
+        let nicknameForMe = "기본 프롬프트"
         let memberId = UUID().uuidString
         let storageRef = Storage.storage().reference().child("members/\(memberId).jpg")
 
@@ -179,7 +179,7 @@ class AddMemberViewController: UIViewController,
                     tendency2: tendency2,
                     tendency3: tendency3,
                     characteristic: characteristic,
-                    prompt: prompt,
+                    nicknameForMe: nicknameForMe,
                     relationType: relationType,
                     avatarURL: avatarURL
                 )

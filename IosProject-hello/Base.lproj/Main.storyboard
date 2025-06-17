@@ -460,7 +460,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq4-7f-wbP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="1863"/>
+            <point key="canvasLocation" x="2463" y="1865"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="TaP-qi-7HD">

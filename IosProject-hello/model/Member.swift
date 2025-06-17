@@ -18,7 +18,7 @@ struct Member {
     var tendency2: String
     var tendency3: String
     var characteristic: String // 특징
-    var prompt: String // 상황에 따른 프롬프트
+    var nicknameForMe: String // 상황에 따른 프롬프트
     var relationType: String // 관계의 성격 (ex. 연인, 친구, 가족, 선배, 상사 등)
     var avatarURL: String // Storage에 저장된 이미지 경로
 
@@ -35,7 +35,7 @@ struct Member {
             "tendency2": member.tendency2,
             "tendency3": member.tendency3,
             "characteristic": member.characteristic,
-            "prompt": member.prompt,
+            "nicknameForMe": member.nicknameForMe,
             "relationType": member.relationType,
             "avatarURL": member.avatarURL
         ]
@@ -53,7 +53,7 @@ struct Member {
         let tendency2 = dict["tendency2"] as? String ?? ""
         let tendency3 = dict["tendency3"] as? String ?? ""
         let characteristic = dict["characteristic"] as? String ?? ""
-        let prompt = dict["prompt"] as? String ?? ""
+        let nicknameForMe = dict["nicknameForMe"] as? String ?? ""
         let relationType = dict["relationType"] as? String ?? ""
         let avatarURL = dict["avatarURL"] as? String ?? ""
 
@@ -68,7 +68,7 @@ struct Member {
             tendency2: tendency2,
             tendency3: tendency3,
             characteristic: characteristic,
-            prompt: prompt,
+            nicknameForMe: nicknameForMe,
             relationType: relationType,
             avatarURL: avatarURL
         )

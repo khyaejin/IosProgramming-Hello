@@ -22,7 +22,7 @@ final class DataAddTest{
             tendency2: "진중한",
             tendency3: "성실한",
             characteristic: "듬직하고 배려심 깊음",
-            prompt: "프롬프트",
+            nicknameForMe: "프롬프트",
             relationType: "연애",
             avatarURL: ""
         )
