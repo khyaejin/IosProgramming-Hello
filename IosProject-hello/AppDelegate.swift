@@ -14,6 +14,11 @@ import FirebaseStorage
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let dataAddTest = DataAddTest()
+    
+    var window: UIWindow?
+    // 테스트용 임시 사용자 ID
+    var testUserId: String = "user001"
+   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         // 테스트용 멤버 삽입
-        dataAddTest.createTestMember()
+//        dataAddTest.createTestMember()
         return true
     }
 

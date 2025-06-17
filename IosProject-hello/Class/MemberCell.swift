@@ -17,7 +17,7 @@ class MemberCell: UICollectionViewCell {
 
         // Firebase Storage에서 가져온 avatarURL로 이미지 로드
         if let url = URL(string: member.avatarURL) {
-            avatarImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default_member"))
+            avatarImageView.sd_setImage(with: url)
         } else {
             avatarImageView.image = UIImage(named: "default_member")
         }

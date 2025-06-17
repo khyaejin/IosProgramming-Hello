@@ -4,25 +4,36 @@
 //
 //  Created by 김혜진 on 6/17/25.
 //
+// TendencyCell.swift
+// 성향
 
 import UIKit
 
-// 성향
 class TendencyCell: UICollectionViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tendencyLabel: UILabel!
 
     override var isSelected: Bool {
         didSet {
-            contentView.backgroundColor = isSelected ? UIColor.systemBlue : UIColor.clear
-            titleLabel.textColor = isSelected ? .white : .black
-            contentView.layer.borderColor = isSelected ? UIColor.systemBlue.cgColor : UIColor.lightGray.cgColor
+            updateStyle(selected: isSelected)
         }
     }
 
     func configure(with title: String) {
-            titleLabel.text = title
-            contentView.layer.cornerRadius = 16
-            contentView.layer.borderWidth = 1
-            contentView.layer.borderColor = UIColor.lightGray.cgColor
-        }
+        tendencyLabel.text = title
+        tendencyLabel.font = UIFont.systemFont(ofSize: 14)
+        tendencyLabel.textAlignment = .center
+
+        contentView.layer.cornerRadius = 13
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.systemBlue.cgColor
+        contentView.clipsToBounds = true
+
+        // 선택 상태 반영
+        updateStyle(selected: isSelected)
+    }
+
+    func updateStyle(selected: Bool) {
+        contentView.backgroundColor = selected ? .systemBlue : .white
+        tendencyLabel.textColor = selected ? .white : .systemBlue
+    }
 }

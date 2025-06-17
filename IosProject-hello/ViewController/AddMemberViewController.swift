@@ -4,6 +4,7 @@
 //
 //  Created by 김혜진 on 6/17/25.
 //
+
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
@@ -13,8 +14,7 @@ class AddMemberViewController: UIViewController,
                                 UIImagePickerControllerDelegate,
                                 UINavigationControllerDelegate {
 
-
-    // MARK: - IBOutlets
+    // MARK: - 연결
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageField: UITextField!
@@ -24,40 +24,45 @@ class AddMemberViewController: UIViewController,
     @IBOutlet weak var tendencyCollectionView: UICollectionView!
     @IBOutlet weak var characteristicField: UITextField!
 
-    // MARK: - Properties
+    // MARK: - 값들 관리
     var selectedImage: UIImage?
     let tendencyOptions = ["공손한", "유머", "친근한", "상냥한", "분석적", "격식", "감성적", "논리적", "시크", "다정한", "귀여운", "예의바른", "깔끔한", "활기찬", "쿨한"]
     var selectedTendencies: [String] = []
     let relationTypes = ["연인", "친구", "동료", "상사", "후배"]
     var selectedRelationType: String?
+    var selectedMBTI: String?
     weak var delegate: MemberSettingDelegate?
 
-    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        setupUI()
+        configureMBTIMenu()
+        configurePickers()
+    }
+
+    // MARK: - UI 초기 설정
+    func setupUI() {
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImage)))
 
         tendencyCollectionView.delegate = self
         tendencyCollectionView.dataSource = self
-        
+        tendencyCollectionView.backgroundColor = .clear
+    }
+
+    // MARK: - Picker 설정
+    func configurePickers() {
         relationTypePicker.delegate = self
         relationTypePicker.dataSource = self
-
-        configureMBTIMenu()
-
         selectedRelationType = relationTypes[0]
         relationTypePicker.selectRow(0, inComponent: 0, animated: false)
-
     }
-    
-    // MARK: - mbti
-    var selectedMBTI: String?
 
+    // MARK: - MBTI 메뉴 설정
     func configureMBTIMenu() {
         let mbtiTypes = ["INTJ", "ENFP", "ISTP", "ESFJ"]
-
         let actions = mbtiTypes.map { type in
             UIAction(title: type, handler: { [weak self] _ in
                 self?.mbtiButton.setTitle(type, for: .normal)
@@ -65,15 +70,12 @@ class AddMemberViewController: UIViewController,
                 print("선택된 MBTI: \(type)")
             })
         }
-
         let menu = UIMenu(title: "MBTI 선택", options: .displayInline, children: actions)
         mbtiButton.menu = menu
         mbtiButton.showsMenuAsPrimaryAction = true
     }
 
-
-
-    // MARK: - Image Picker
+    // MARK: - 이미지 선택
     @objc func selectImage() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -89,48 +91,77 @@ class AddMemberViewController: UIViewController,
         dismiss(animated: true)
     }
 
-
-
-    // MARK: - Save
+    // MARK: - 저장 버튼 동작
     @IBAction func saveButtonTapped(_ sender: Any) {
+        view.endEditing(true) // 바로 나가져서 저장 버튼 두번 못 누르도록
         uploadMember()
     }
 
+    // MARK: - 멤버 업로드
     func uploadMember() {
-        guard let uid = Auth.auth().currentUser?.uid,
-              let image = selectedImage,
-              let imageData = image.jpegData(compressionQuality: 0.8),
-              let name = nameField.text,
-              let age = Int(ageField.text ?? ""),
-              let mbti = mbtiButton.title(for: .normal),
-              let characteristic = characteristicField.text,
-              let relationType = selectedRelationType
-                
-        else {
-            print("필드 누락 또는 잘못된 값")
-            return
+        // TODO: 로그인 기능 추가 필요(회원 관리 기능)
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            showAlert(message: "로그인이 필요합니다.")
+//            return
+//        }
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let uid = appDelegate.testUserId
+
+        let image: UIImage
+        if let selected = selectedImage {
+            image = selected
+        } else {
+            image = UIImage(named: "default_member")! //  기본 이미지 사용
         }
 
-        // 성별
-        let gender = genderField.selectedSegmentIndex == 0 ? "남성" : "여성"
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+            showAlert(message: "이미지 데이터를 처리할 수 없습니다.")
+            return
+        }
+        guard let name = nameField.text, !name.isEmpty else {
+            showAlert(message: "이름을 입력해주세요.")
+            return
+        }
+        guard let ageText = ageField.text, let age = Int(ageText) else {
+            showAlert(message: "나이를 정확히 입력해주세요.")
+            return
+        }
+        guard let mbti = selectedMBTI else {
+            showAlert(message: "MBTI를 선택해주세요.")
+            return
+        }
+        guard let characteristic = characteristicField.text, !characteristic.isEmpty else {
+            showAlert(message: "특징을 입력해주셔야 보다 정확한 대화 연습이 가능합니다.")
+            return
+        }
+        guard let relationType = selectedRelationType else {
+            showAlert(message: "관계 유형을 선택해주세요.")
+            return
+        }
         
-        // 성향 3개만 저장
+        func showAlert(message: String) {
+            let alert = UIAlertController(title: "입력 오류", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            present(alert, animated: true)
+        }
+
+
+        let gender = genderField.selectedSegmentIndex == 0 ? "남성" : "여성"
         let tendency1 = selectedTendencies[safe: 0] ?? ""
         let tendency2 = selectedTendencies[safe: 1] ?? ""
         let tendency3 = selectedTendencies[safe: 2] ?? ""
-
-        // 프롬프트는 임시로
         let prompt = "기본 프롬프트"
-        
         let memberId = UUID().uuidString
         let storageRef = Storage.storage().reference().child("members/\(memberId).jpg")
-        
+
         storageRef.putData(imageData) { _, error in
             if let error = error {
                 print("이미지 업로드 실패: \(error)")
                 return
             }
-            
+
             storageRef.downloadURL { url, error in
                 guard let avatarURL = url?.absoluteString else {
                     print("다운로드 URL 실패")
@@ -168,15 +199,25 @@ class AddMemberViewController: UIViewController,
     }
 }
 
-// MARK: - Array Safe Index
+// MARK: - 배열
 extension Array {
     subscript(safe index: Int) -> Element? {
         return (0..<count).contains(index) ? self[index] : nil
     }
 }
 
-// MARK: - UICollectionView
+// MARK: - UICollectionView 설정
 extension AddMemberViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    // 셀들 간 가로 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+
+    // 셀들의 행간
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tendencyOptions.count
@@ -186,35 +227,43 @@ extension AddMemberViewController: UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TendencyCell", for: indexPath) as! TendencyCell
         let title = tendencyOptions[indexPath.item]
         cell.configure(with: title)
-        cell.isSelected = selectedTendencies.contains(title)
+        let isSelected = selectedTendencies.contains(title)
+        cell.updateStyle(selected: isSelected)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selected = tendencyOptions[indexPath.item]
+
         if selectedTendencies.contains(selected) {
             selectedTendencies.removeAll { $0 == selected }
+            collectionView.deselectItem(at: indexPath, animated: true)
         } else {
             if selectedTendencies.count >= 3 {
                 let alert = UIAlertController(title: "최대 3개까지 선택할 수 있어요", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default))
                 present(alert, animated: true)
-                collectionView.deselectItem(at: indexPath, animated: true)
+                collectionView.deselectItem(at: indexPath, animated: false)
                 return
             }
             selectedTendencies.append(selected)
         }
-        collectionView.reloadData()
+
+        collectionView.reloadItems(at: [indexPath])
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = tendencyOptions[indexPath.item]
-        let width = text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 16)]).width + 24
-        return CGSize(width: width, height: 32)
+        let font = UIFont.systemFont(ofSize: 15)
+        let textAttributes = [NSAttributedString.Key.font: font]
+        let textSize = (text as NSString).size(withAttributes: textAttributes)
+        let width = textSize.width + 26
+        let height: CGFloat = 30
+        return CGSize(width: width, height: height)
     }
 }
 
-// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+// MARK: - UIPickerView 설정
 extension AddMemberViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -233,5 +282,3 @@ extension AddMemberViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         selectedRelationType = relationTypes[row]
     }
 }
-
-
