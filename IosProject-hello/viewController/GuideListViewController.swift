@@ -17,7 +17,6 @@ class GuideListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         title = situation.description
-        view.backgroundColor = .systemBackground
 
         tableView.delegate = self
         tableView.dataSource = self

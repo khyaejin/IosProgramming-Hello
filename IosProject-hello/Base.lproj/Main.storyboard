@@ -29,35 +29,35 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비법서" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7v-6m-IxG">
                                 <rect key="frame" x="169.33333333333334" y="108" width="54.666666666666657" height="32.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ApN-98-JH0">
                                 <rect key="frame" x="30" y="325" width="333" height="414"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.015686274510000001" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rj5-o4-VD2" customClass="SituationCollectionViewFlowLayout" customModule="IosProject_hello" customModuleProvider="target">
-                                    <size key="itemSize" width="333" height="128"/>
+                                    <size key="itemSize" width="333" height="83"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SituationCell" id="kVf-dz-Hkn" customClass="SituationCell" customModule="IosProject_hello" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="333" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CkH-Di-CwG">
-                                            <rect key="frame" x="0.0" y="0.0" width="333" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDh-vf-Vo7">
-                                                    <rect key="frame" x="15" y="20" width="303" height="88"/>
+                                                    <rect key="frame" x="15" y="20" width="303" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.015686274510000001" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="xDh-vf-Vo7" firstAttribute="leading" secondItem="CkH-Di-CwG" secondAttribute="leading" constant="15" id="L1Q-bc-ToB"/>
                                                 <constraint firstItem="xDh-vf-Vo7" firstAttribute="top" secondItem="CkH-Di-CwG" secondAttribute="top" constant="20" id="YhZ-tr-4UV"/>
@@ -65,8 +65,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="xDh-vf-Vo7" secondAttribute="bottom" constant="20" id="yPC-wI-K57"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="customSize" width="333" height="128"/>
+                                        <size key="customSize" width="333" height="83"/>
                                         <connections>
                                             <outlet property="situationLabel" destination="xDh-vf-Vo7" id="L1O-wf-mL3"/>
                                         </connections>
@@ -79,12 +78,12 @@
                                 <string key="text">수많은 시행착오 끝에 쌓인 선배들의 경험.
 당신을 위한 진짜 대화 비법서, 지금 펼쳐보세요.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.015686274510000001" green="0.0" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ojl-J2-YQj" firstAttribute="centerX" secondItem="W7v-6m-IxG" secondAttribute="centerX" id="7oD-sF-BjV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ApN-98-JH0" secondAttribute="trailing" constant="30" id="83D-ag-buc"/>
@@ -140,7 +139,7 @@
                                                 <constraint firstItem="Zuz-St-Obr" firstAttribute="leading" secondItem="YEd-3b-yCS" secondAttribute="leadingMargin" constant="16" id="gAX-J6-MMv"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="contentLabel" destination="Zuz-St-Obr" id="bSo-sy-5b6"/>
                                         </connections>
@@ -149,7 +148,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WKG-39-LTU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e8F-AN-MYt" firstAttribute="top" secondItem="WKG-39-LTU" secondAttribute="top" constant="30" id="1TS-qf-zxO"/>
                             <constraint firstItem="WKG-39-LTU" firstAttribute="bottom" secondItem="e8F-AN-MYt" secondAttribute="bottom" constant="30" id="5hP-EY-vrs"/>

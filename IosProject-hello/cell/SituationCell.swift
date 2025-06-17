@@ -20,10 +20,9 @@ class SituationCell: UICollectionViewCell {
         situationLabel.font = .systemFont(ofSize: 16, weight: .medium)
         situationLabel.textColor = .label
     }
-    override var isSelected: Bool {
-        didSet {
-            contentView.backgroundColor = isSelected ? UIColor.systemGray5 : UIColor.clear
-        }
-    }
-
+//    override var isSelected: Bool {
+//        didSet {
+//            contentView.backgroundColor = isSelected ? UIColor.systemGray5 : UIColor.clear
+//        }
+//    }
 }

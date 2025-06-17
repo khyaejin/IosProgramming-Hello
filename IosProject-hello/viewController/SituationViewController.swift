@@ -23,7 +23,6 @@ class SituationViewController: UIViewController, UICollectionViewDelegate, UICol
         // FlowLayout 등록
         collectionView.collectionViewLayout = SituationCollectionViewFlowLayout()
 
-
         fetchSituations()
     }
 
