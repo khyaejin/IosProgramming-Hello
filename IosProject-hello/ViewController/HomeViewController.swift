@@ -125,23 +125,11 @@ class HomeViewController: UIViewController,
     
     // 공략 상대 설정하기 버튼 클릭 시
     @IBAction func AddNewmember(_ sender: Any) {
-        // MemberSettingViewController로 이동
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-           if let vc = storyboard.instantiateViewController(withIdentifier: "MemberSettingViewController") as? MemberSettingViewController {
-               vc.delegate = self  // 복귀 시 데이터 전달 받으려면
-               vc.modalPresentationStyle = .fullScreen
-               present(vc, animated: true, completion: nil)
-           }
+       
     }
 
     @IBAction func noticeButton(_ sender: Any) {}
     @IBAction func letterboxButton(_ sender: Any) {}
 }
 
-extension HomeViewController: MemberSettingDelegate {
-    func memberDidFinishSetting() {
-        // 다시 돌아왔을 때 처리할 로직
-        print("멤버 설정 완료 후 돌아옴")
-        // 새로고침 
-    }
-}
+
