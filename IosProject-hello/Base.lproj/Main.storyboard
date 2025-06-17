@@ -14,7 +14,7 @@
         <!--비법서-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GuidebookViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SituationViewController" id="BYZ-38-t0r" customClass="SituationViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,26 +45,44 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ApN-98-JH0">
                                 <rect key="frame" x="30" y="269" width="333" height="470"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rj5-o4-VD2">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rj5-o4-VD2" customClass="SituationCollectionViewFlowLayout" customModule="IosProject_hello" customModuleProvider="target">
+                                    <size key="itemSize" width="333" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kVf-dz-Hkn">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SituationCell" id="kVf-dz-Hkn" customClass="SituationCell" customModule="IosProject_hello" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CkH-Di-CwG">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDh-vf-Vo7">
+                                                    <rect key="frame" x="15" y="20" width="303" height="88"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xDh-vf-Vo7" firstAttribute="leading" secondItem="CkH-Di-CwG" secondAttribute="leading" constant="15" id="L1Q-bc-ToB"/>
+                                                <constraint firstItem="xDh-vf-Vo7" firstAttribute="top" secondItem="CkH-Di-CwG" secondAttribute="top" constant="20" id="YhZ-tr-4UV"/>
+                                                <constraint firstAttribute="trailing" secondItem="xDh-vf-Vo7" secondAttribute="trailing" constant="15" id="qpQ-ac-cgE"/>
+                                                <constraint firstAttribute="bottom" secondItem="xDh-vf-Vo7" secondAttribute="bottom" constant="20" id="yPC-wI-K57"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="333" height="128"/>
+                                        <connections>
+                                            <outlet property="situationLabel" destination="xDh-vf-Vo7" id="L1O-wf-mL3"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.023529411760000001" green="0.0" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98169111389999997" green="0.95423624669999996" blue="0.9778841922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ojl-J2-YQj" firstAttribute="centerX" secondItem="W7v-6m-IxG" secondAttribute="centerX" id="7oD-sF-BjV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ApN-98-JH0" secondAttribute="trailing" constant="30" id="83D-ag-buc"/>
@@ -79,10 +97,42 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="비법서" image="book.closed.fill" catalog="system" id="UIE-6p-WGT"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ApN-98-JH0" id="3Fm-WR-KwL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="349"/>
+            <point key="canvasLocation" x="1665" y="2541"/>
+        </scene>
+        <!--Guide List View Controller-->
+        <scene sceneID="2mv-ub-1ma">
+            <objects>
+                <viewController storyboardIdentifier="GuideListViewController" id="p7N-h6-Y9u" customClass="GuideListViewController" customModule="IosProject_hello" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RI9-XR-5dS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e8F-AN-MYt">
+                                <rect key="frame" x="30" y="172" width="333" height="565"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WKG-39-LTU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WKG-39-LTU" firstAttribute="bottom" secondItem="e8F-AN-MYt" secondAttribute="bottom" constant="30" id="5hP-EY-vrs"/>
+                            <constraint firstItem="e8F-AN-MYt" firstAttribute="leading" secondItem="WKG-39-LTU" secondAttribute="leading" constant="30" id="CCn-hV-Y6S"/>
+                            <constraint firstItem="WKG-39-LTU" firstAttribute="trailing" secondItem="e8F-AN-MYt" secondAttribute="trailing" constant="30" id="RQk-dL-jyR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="e8F-AN-MYt" id="a0p-sB-3sp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ln-bn-gJR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2371.7557251908397" y="2540.8450704225352"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pDy-Qe-RU1">
@@ -97,14 +147,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="swk-te-Q69" kind="relationship" relationship="viewControllers" id="l9v-uR-u6j"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gzu-l4-Ccy"/>
-                        <segue destination="Ixt-5a-3DC" kind="relationship" relationship="viewControllers" id="qxs-Ex-AV3"/>
                         <segue destination="9GP-ct-Tcj" kind="relationship" relationship="viewControllers" id="GQr-Ir-k0g"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gzu-l4-Ccy"/>
+                        <segue destination="Ixt-5a-3DC" kind="relationship" relationship="viewControllers" id="poB-Nx-tgQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbh-Oi-SM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="375" y="867"/>
+            <point key="canvasLocation" x="389" y="1355"/>
         </scene>
         <!--홈-->
         <scene sceneID="DqF-3D-oLA">
@@ -422,7 +472,7 @@
                                     <constraint firstAttribute="width" constant="287" id="OE8-8V-nXP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="light" returnKeyType="done" smartInsertDeleteType="no"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done" smartInsertDeleteType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-Wv-NpZ">
                                 <rect key="frame" x="317" y="753" width="51" height="45"/>
@@ -678,7 +728,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsW-8W-bY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="1151"/>
+            <point key="canvasLocation" x="1665" y="3351"/>
         </scene>
         <!--Member Setting View Controller-->
         <scene sceneID="JeV-88-tSV">
