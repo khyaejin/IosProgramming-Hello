@@ -43,21 +43,19 @@ struct Member {
 
     // Firestore에서 받아온 Dictionary를 Member로 변환
     static func fromDict(_ dict: [String: Any]) -> Member? {
-        guard let id = dict["id"] as? String,
-              let userId = dict["userId"] as? String,
-              let name = dict["name"] as? String,
-              let age = dict["age"] as? Int,
-              let gender = dict["gender"] as? String,
-              let mbti = dict["mbti"] as? String,
-              let tendency1 = dict["tendency1"] as? String,
-              let tendency2 = dict["tendency2"] as? String,
-              let tendency3 = dict["tendency3"] as? String,
-              let characteristic = dict["characteristic"] as? String,
-              let prompt = dict["prompt"] as? String,
-              let relationType = dict["relationType"] as? String,
-              let avatarURL = dict["avatarURL"] as? String else {
-            return nil
-        }
+        let id = dict["id"] as? String ?? ""
+        let userId = dict["userId"] as? String ?? ""
+        let name = dict["name"] as? String ?? ""
+        let age = dict["age"] as? Int ?? 0
+        let gender = dict["gender"] as? String ?? ""
+        let mbti = dict["mbti"] as? String ?? ""
+        let tendency1 = dict["tendency1"] as? String ?? ""
+        let tendency2 = dict["tendency2"] as? String ?? ""
+        let tendency3 = dict["tendency3"] as? String ?? ""
+        let characteristic = dict["characteristic"] as? String ?? ""
+        let prompt = dict["prompt"] as? String ?? ""
+        let relationType = dict["relationType"] as? String ?? ""
+        let avatarURL = dict["avatarURL"] as? String ?? ""
 
         return Member(
             id: id,
@@ -75,4 +73,5 @@ struct Member {
             avatarURL: avatarURL
         )
     }
+
 }

@@ -20,7 +20,7 @@ class AddMemberViewController: UIViewController,
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var genderField: UISegmentedControl!
     @IBOutlet weak var relationTypePicker: UIPickerView!
-    @IBOutlet weak var mbtiField: UIButton!
+    @IBOutlet weak var mbtiButton: UIButton!
     @IBOutlet weak var tendencyCollectionView: UICollectionView!
     @IBOutlet weak var characteristicField: UITextField!
 
@@ -44,11 +44,34 @@ class AddMemberViewController: UIViewController,
         
         relationTypePicker.delegate = self
         relationTypePicker.dataSource = self
-        
+
+        configureMBTIMenu()
+
         selectedRelationType = relationTypes[0]
         relationTypePicker.selectRow(0, inComponent: 0, animated: false)
 
     }
+    
+    // MARK: - mbti
+    var selectedMBTI: String?
+
+    func configureMBTIMenu() {
+        let mbtiTypes = ["INTJ", "ENFP", "ISTP", "ESFJ"]
+
+        let actions = mbtiTypes.map { type in
+            UIAction(title: type, handler: { [weak self] _ in
+                self?.mbtiButton.setTitle(type, for: .normal)
+                self?.selectedMBTI = type
+                print("선택된 MBTI: \(type)")
+            })
+        }
+
+        let menu = UIMenu(title: "MBTI 선택", options: .displayInline, children: actions)
+        mbtiButton.menu = menu
+        mbtiButton.showsMenuAsPrimaryAction = true
+    }
+
+
 
     // MARK: - Image Picker
     @objc func selectImage() {
@@ -66,17 +89,7 @@ class AddMemberViewController: UIViewController,
         dismiss(animated: true)
     }
 
-    // MARK: - MBTI 선택
-    @IBAction func mbtiFieldTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "MBTI 선택", message: nil, preferredStyle: .actionSheet)
-        ["INTJ", "ENFP", "ISTP", "ESFJ"].forEach { type in
-            alert.addAction(UIAlertAction(title: type, style: .default, handler: { _ in
-                sender.setTitle(type, for: .normal)
-            }))
-        }
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
-        present(alert, animated: true)
-    }
+
 
     // MARK: - Save
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -89,7 +102,7 @@ class AddMemberViewController: UIViewController,
               let imageData = image.jpegData(compressionQuality: 0.8),
               let name = nameField.text,
               let age = Int(ageField.text ?? ""),
-              let mbti = mbtiField.title(for: .normal),
+              let mbti = mbtiButton.title(for: .normal),
               let characteristic = characteristicField.text,
               let relationType = selectedRelationType
                 

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// 성향
 class TendencyCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 

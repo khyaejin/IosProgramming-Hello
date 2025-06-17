@@ -13,6 +13,7 @@ import FirebaseStorage
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let dataAddTest = DataAddTest()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(" FirebaseApp is configured: \(FirebaseApp.app() != nil)")
 
         
+        // 테스트용 멤버 삽입
+        dataAddTest.createTestMember()
         return true
     }
 

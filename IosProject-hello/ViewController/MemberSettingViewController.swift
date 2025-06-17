@@ -38,10 +38,19 @@ class MemberSettingViewController: UIViewController {
                 }
 
                 self.members = snapshot?.documents.compactMap {
-                    Member.fromDict($0.data())
+                    let data = $0.data()
+                    print("시도 중인 멤버 데이터: \(data)")
+                    return Member.fromDict(data)
                 } ?? []
 
+
                 self.collectionView.reloadData()
+                
+                print("가져온 멤버 수: \(self.members.count)")
+                for m in self.members {
+                    print("👤 \(m.name), 이미지: \(m.avatarURL)")
+                }
+
             }
     }
 }
