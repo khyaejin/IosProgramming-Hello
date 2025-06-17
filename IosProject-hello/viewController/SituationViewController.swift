@@ -16,7 +16,6 @@ class SituationViewController: UIViewController, UICollectionViewDelegate, UICol
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "비법서"
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -59,7 +58,12 @@ class SituationViewController: UIViewController, UICollectionViewDelegate, UICol
     // 상황 선택 시 가이드리스트 화면으로 이동
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selected = situations[indexPath.item]
-        let vc = GuideListViewController(situation: selected)
-        navigationController?.pushViewController(vc, animated: true)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "GuideListViewController") as? GuideListViewController {
+            vc.situation = selected
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
+
 }

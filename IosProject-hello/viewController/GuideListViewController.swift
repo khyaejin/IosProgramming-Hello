@@ -4,7 +4,6 @@
 //
 //  Created by 김혜진 on 6/18/25.
 //
-
 import UIKit
 import FirebaseFirestore
 
@@ -12,26 +11,16 @@ class GuideListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
 
-    var situation: Situation
+    var situation: Situation! // nil 허용으로 바꾸기
     var guides: [Guide] = []
-
-    init(situation: Situation) {
-        self.situation = situation
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "비법서 목록"
+        title = situation.description
         view.backgroundColor = .systemBackground
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GuideCell")
 
         fetchGuides()
     }
@@ -41,13 +30,14 @@ class GuideListViewController: UIViewController, UITableViewDelegate, UITableVie
             .whereField("situationId", isEqualTo: situation.id)
             .getDocuments { snapshot, error in
                 if let error = error {
-                    print("🔥 가이드 로딩 오류:", error)
+                    print("가이드 로딩 오류:", error)
                     return
                 }
 
                 guard let documents = snapshot?.documents else { return }
 
                 self.guides = documents.compactMap { Guide.fromDict($0.data()) }
+                print("'\(self.situation.description)' 상황: \(self.guides.count)개 가이드 불러와짐.")
                 self.tableView.reloadData()
             }
     }
@@ -60,9 +50,11 @@ class GuideListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let guide = guides[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GuideCell", for: indexPath)
-        cell.textLabel?.text = guide.content
-        cell.textLabel?.numberOfLines = 0
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GuideCell", for: indexPath) as? GuideCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: guide)
         return cell
     }
+
 }
