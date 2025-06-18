@@ -22,8 +22,8 @@ class ChatPrefaceViewController: UIViewController {
         super.viewDidLoad()
 
         // 기본 스타일 (옵션)
-        nicknameTextField.placeholder = "어떻게 불리고 싶은가요? (예: 자기야)"
-        situationTextField.placeholder = "어떤 상황인가요? (예: 첫 데이트 상황)"
+        nicknameTextField.placeholder = "예) 자기야"
+        situationTextField.placeholder = "예) 무슨 말을 해야할 지 모르겠는 첫 데이트 상황"
     }
 
     @IBAction func submitTapped(_ sender: UIButton) {

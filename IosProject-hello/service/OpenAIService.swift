@@ -23,7 +23,7 @@ class OpenAIService {
         } + [["role": "user", "content": userInput]]
 
         let payload: [String: Any] = [
-            "model": "gpt-4.1-nano", // 또는 실제로 지원되는 모델명인지 확인 필요
+            "model": "gpt-4.1-nano",
             "messages": messageHistory,
             "temperature": 0.8
         ]
