@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let dataAddTest = DataAddTest()
     
     var window: UIWindow?
-    // 테스트용 임시 사용자 ID
-    var testUserId: String = "user001"
-   
+    
+    // 로그인 후 저장될 사용자 정보
+    var currentUser: User?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

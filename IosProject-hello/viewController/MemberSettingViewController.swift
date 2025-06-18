@@ -33,29 +33,34 @@ class MemberSettingViewController: UIViewController {
 
     // MARK: - Firestore 멤버 불러오기
     func fetchMembers() {
+        guard let userId = (UIApplication.shared.delegate as? AppDelegate)?.currentUser?.id else {
+            print("현재 로그인한 사용자 ID를 찾을 수 없습니다.")
+            return
+        }
+
         Firestore.firestore().collection("members")
+            .whereField("userId", isEqualTo: userId) // 필터 조건 추가
             .getDocuments { snapshot, error in
                 if let error = error {
-                    print("전체 멤버 불러오기 오류: \(error.localizedDescription)")
+                    print("멤버 불러오기 오류: \(error.localizedDescription)")
                     return
                 }
 
                 self.members = snapshot?.documents.compactMap {
                     let data = $0.data()
-                    print("시도 중인 멤버 데이터: \(data)")
+                    print("가져온 멤버 데이터: \(data)")
                     return Member.fromDict(data)
                 } ?? []
 
-
                 self.collectionView.reloadData()
-                
+
                 print("가져온 멤버 수: \(self.members.count)")
                 for m in self.members {
                     print(" \(m.name), 이미지: \(m.avatarURL)")
                 }
-
             }
     }
+
 }
 
 // MARK: - CollectionView 구성

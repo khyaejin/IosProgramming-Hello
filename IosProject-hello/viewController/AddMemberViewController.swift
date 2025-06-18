@@ -116,7 +116,10 @@ class AddMemberViewController: UIViewController,
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 
-        let uid = appDelegate.testUserId
+        guard let uid = (UIApplication.shared.delegate as? AppDelegate)?.currentUser?.id else {
+            print("로그인한 사용자 정보가 없습니다.")
+            return
+        }
 
         let image: UIImage
         if let selected = selectedImage {

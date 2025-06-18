@@ -10,40 +10,28 @@ import Foundation
 struct User {
     var id: String
     var name: String
-    var age: Int
+    var email: String
+    var password: String
     var gender: String
-    var mbti: String
-    var tendency1: String
-    var tendency2: String
-    var tendency3: String
-    var loveType: String
 
     static func toDict(_ user: User) -> [String: Any] {
-        return [
-            "id": user.id,
-            "name": user.name,
-            "age": user.age,
-            "gender": user.gender,
-            "mbti": user.mbti,
-            "tendency1": user.tendency1,
-            "tendency2": user.tendency2,
-            "tendency3": user.tendency3,
-            "loveType": user.loveType
-        ]
+            return [
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "gender": user.gender
+            ]
     }
 
     static func fromDict(_ dict: [String: Any]) -> User? {
-        guard let id = dict["id"] as? String,
-              let name = dict["name"] as? String,
-              let age = dict["age"] as? Int,
-              let gender = dict["gender"] as? String,
-              let mbti = dict["mbti"] as? String,
-              let tendency1 = dict["tendency1"] as? String,
-              let tendency2 = dict["tendency2"] as? String,
-              let tendency3 = dict["tendency3"] as? String,
-              let loveType = dict["loveType"] as? String else {
-            return nil
-        }
-        return User(id: id, name: name, age: age, gender: gender, mbti: mbti, tendency1: tendency1, tendency2: tendency2, tendency3: tendency3, loveType: loveType)
+            guard let id = dict["id"] as? String,
+                  let name = dict["name"] as? String,
+                  let email = dict["email"] as? String,
+                  let gender = dict["gender"] as? String else {
+                return nil
+            }
+            // 비밀번호는 보통 Firestore에 저장하지 않음
+            return User(id: id, name: name, email: email, password: "", gender: gender)
     }
+    
 }
