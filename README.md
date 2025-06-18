@@ -1,4 +1,100 @@
-## 🌈 ERD
+## ✨ 서비스 설명
+![image](https://github.com/user-attachments/assets/0247ee41-69df-427e-b571-c331129ee096)
+![image](https://github.com/user-attachments/assets/062212fc-b707-4b2d-b4db-2b96361048dc)
+![image](https://github.com/user-attachments/assets/0ba3025e-5709-45a0-93f8-41a2d571aa97)
+![image](https://github.com/user-attachments/assets/361029b3-add6-46d2-a5ee-3e4b31210807)
+![image](https://github.com/user-attachments/assets/f26194fe-e7a5-47f8-88f8-0ce78e7eeedb)
+
+
+## 💬 코드 설명
+
+### 📁 `cell`
+
+화면에 보여지는 다양한 셀들을 모아놓은 폴더입니다.
+
+* **ChatBubbleCell.swift**: 채팅 메시지를 말풍선 형태로 보여주는 셀입니다.
+* **GuideCell.swift / GuideCollectionViewCell.swift**: 가이드를 보여줄 때 사용하는 셀입니다.
+* **MemberCell.swift**: 멤버 정보를 보여주는 셀입니다.
+* **SituationCell.swift**: 상황 정보를 담는 셀입니다.
+* **TendencyCell.swift**: 성향을 표현할 때 사용하는 셀입니다.
+
+---
+
+### 📁 `layout`
+
+컬렉션뷰 셀 배치 방식을 커스터마이징한 파일들이 들어 있습니다.
+
+* **MemberCollectionViewFlowLayout.swift**: 멤버 셀 가로 스크롤 레이아웃
+* **SituationCollectionViewFlowLayout.swift**: 상황 셀 가로 스크롤 레이아웃
+* **TendencyCollectionViewFlowLayout.swift**: 성향 선택 셀 가로 스크롤 레이아웃
+
+---
+
+### 📁 `model`
+
+앱에서 쓰이는 데이터 모델을 정의한 파일들입니다.
+
+* **Guide.swift**: 상황에 따른 가이드 정보를 담는 모델
+* **Member.swift**: 캐릭터(멤버)의 기본 정보 모델
+* **Message.swift**: 채팅 메시지 구조를 정의
+* **Situation.swift**: 상황(시나리오)에 대한 데이터 구조
+* **User.swift**: 유저(나)의 정보 모델
+
+---
+
+### 📁 `service`
+
+Firestore 또는 외부 API와 통신할 때 쓰는 로직들입니다.
+
+* **GuideService.swift**: 가이드 관련 Firestore 작업
+* **MemberService.swift**: 멤버 관련 Firestore 작업
+* **OpenAIService.swift**: OpenAI API와 연결하는 기능
+* **SituationService.swift**: 상황 관련 Firestore 기능
+* **UserService.swift**: 사용자 정보 저장/불러오기
+
+---
+
+### 📁 `test`
+
+개발 중 테스트용 코드들이 들어있는 공간입니다.
+
+* **DataAddTest.swift**: 샘플 데이터를 Firestore에 넣을 때 사용
+
+---
+
+### 📁 `util`
+
+공통적으로 자주 쓰이는 기능들을 정리한 유틸 파일들입니다.
+
+* **KeyManager.swift**: 키 값 불러오는 코드
+* **UIColor.swift**: 색상 hex 코드로 초기화할 수 있도록 도와주는 확장
+
+---
+
+### 📁 `viewController`
+
+각 화면을 구성하는 뷰컨트롤러 모음입니다.
+
+* **AddMemberViewController.swift**: 새로운 멤버를 추가할 때 쓰는 화면
+* **ChatPrefaceViewController.swift**: 채팅 시작 전에 설정 입력받는 모달
+* **ChatViewController.swift**: 실제로 채팅이 이루어지는 메인 채팅창
+* **GuideListViewController.swift**: 상황에 맞는 가이드들을 리스트로 보여주는 화면
+* **HomeViewController.swift**: 앱 첫 홈 화면
+* **LogInViewController.swift**: 로그인 화면
+* **MemberSettingViewController.swift**: 멤버 선택 및 추가 화면
+* **MyPageViewController.swift**: 마이페이지
+* **SignUpViewController.swift**: 회원가입 화면
+* **SituationViewController.swift**: 상황을 고르는 화면
+* **StartViewController.swift**: 앱을 처음 실행했을 때 나오는 시작 화면
+
+---
+
+### 📄 `AppDelegate.swift`
+앱 실행 시 초기 설정을 담당하며, Firebase 초기화도 여기서 이루어집니다.
+
+
+## 🌈 시연 영상
+https://youtu.be/FClXDosum94
 <br><br>
 
 ## 🔀 Git 브랜치 전략
