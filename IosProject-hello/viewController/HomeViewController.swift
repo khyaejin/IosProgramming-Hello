@@ -130,6 +130,17 @@ class HomeViewController: UIViewController,
 
     @IBAction func noticeButton(_ sender: Any) {}
     @IBAction func letterboxButton(_ sender: Any) {}
+    
+    @IBAction func guideButton(_ sender: Any) {
+        // 비법서 탭 바로 이동
+        tabBarController?.selectedIndex = 1
+
+    }
+    @IBAction func ChatButton(_ sender: Any) {
+        // 채팅 탭 바로 이동
+        tabBarController?.selectedIndex = 2
+    }
+    
 }
 
 

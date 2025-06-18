@@ -16,6 +16,6 @@ class SituationCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         guard let collectionView = collectionView else { return }
         let width = collectionView.bounds.width - sectionInset.left - sectionInset.right
-        itemSize = CGSize(width: width, height: 60) 
+        itemSize = CGSize(width: width, height: 100) 
     }
 }

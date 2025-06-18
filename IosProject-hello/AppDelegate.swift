@@ -28,8 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(" FirebaseApp is configured: \(FirebaseApp.app() != nil)")
 
         
-        // 테스트용 멤버 삽입
+        // 데이터 삽입
 //        dataAddTest.createTestMember()
+//        dataAddTest.createTestSituation()
+//        dataAddTest.createTestGuide()
+        
         return true
     }
 
