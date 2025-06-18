@@ -22,18 +22,15 @@ class GuideCell: UITableViewCell {
     }
 
     private func setupCardView() {
-        // 카드 스타일 적용
-        cardView.backgroundColor = UIColor(hex: "#F0F0FF") // 연한 파란 배경
-        cardView.layer.cornerRadius = 16 // 더 둥글게
-        cardView.layer.masksToBounds = false
-
-        // 그림자 효과
+        // cardView로 감싸기
+        cardView.backgroundColor = .systemBackground
+        cardView.layer.cornerRadius = 12
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowOpacity = 0.1
         cardView.layer.shadowOffset = CGSize(width: 0, height: 2)
         cardView.layer.shadowRadius = 6
-
         cardView.translatesAutoresizingMaskIntoConstraints = false
+
         contentView.insertSubview(cardView, at: 0)
 
         NSLayoutConstraint.activate([

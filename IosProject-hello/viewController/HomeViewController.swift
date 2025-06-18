@@ -82,37 +82,70 @@ class HomeViewController: UIViewController,
     // 카드 확대 애니메이션
     func guideCardTapped(from cell: GuideCollectionViewCell) {
         guard let card = cell.guideCard else { return }
-        originalCardFrame = card.superview?.convert(card.frame, to: nil)
-        
+        guard let startFrame = card.superview?.convert(card.frame, to: nil) else { return }
+        originalCardFrame = startFrame
+
         let dimView = UIView(frame: view.bounds)
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         dimView.alpha = 0
         view.addSubview(dimView)
         dimmingView = dimView
 
-        let zoomedCard = UIImageView(image: card.image)
-        zoomedCard.contentMode = card.contentMode
-        zoomedCard.frame = originalCardFrame!
+        // 확대 카드 이미지
+        let zoomedCard = UIImageView(image: UIImage(named: "guideCard_front"))
+        zoomedCard.contentMode = .scaleAspectFill
+        zoomedCard.frame = startFrame
         zoomedCard.layer.cornerRadius = card.layer.cornerRadius
-        zoomedCard.clipsToBounds = true
+        zoomedCard.clipsToBounds = false
         zoomedCard.isUserInteractionEnabled = true
-        zoomedCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissZoomedCard)))
         zoomedCard.tag = 999
-
+        zoomedCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissZoomedCard)))
         view.addSubview(zoomedCard)
+
+        // 내용 라벨 추가
+        let label = UILabel()
+        label.text = cell.guideLabel.text
+        label.textColor = UIColor(hex: "#F0F0FF")
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.alpha = 0  // 처음엔 숨김
+        label.tag = 1000
+        zoomedCard.addSubview(label)
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: zoomedCard.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: zoomedCard.centerYAnchor),
+            label.widthAnchor.constraint(equalTo: zoomedCard.widthAnchor, multiplier: 0.8)
+        ])
 
         UIView.animate(withDuration: 0.3) {
             dimView.alpha = 1
-            zoomedCard.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            zoomedCard.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: self.view.frame.height * 0.6)
             zoomedCard.center = self.view.center
+            label.alpha = 1
         }
+
+        // 확대 이후에 라벨 등장
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
+            label.alpha = 1
+        })
     }
 
+    // 축소 시 카드 변화
     @objc func dismissZoomedCard(_ sender: UITapGestureRecognizer) {
         guard let zoomedCard = view.viewWithTag(999) as? UIImageView,
+              let label = zoomedCard.viewWithTag(1000) as? UILabel,
               let originalFrame = originalCardFrame else { return }
 
-        UIView.animate(withDuration: 0.3, animations: {
+        // 텍스트 먼저 서서히 사라지게
+        UIView.animate(withDuration: 0) {
+            label.alpha = 0
+        }
+
+        // 그 다음 카드 축소 및 배경 제거
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: {
             zoomedCard.frame = originalFrame
             self.dimmingView?.alpha = 0
         }, completion: { _ in
@@ -122,11 +155,7 @@ class HomeViewController: UIViewController,
             self.originalCardFrame = nil
         })
     }
-    
-    // 공략 상대 설정하기 버튼 클릭 시
-    @IBAction func AddNewmember(_ sender: Any) {
-       
-    }
+
 
     @IBAction func noticeButton(_ sender: Any) {}
     @IBAction func letterboxButton(_ sender: Any) {}
