@@ -7,7 +7,8 @@
 
 import UIKit
 
-class UserSettingViewController: UIViewController {
+// 로그인
+class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
